@@ -2,7 +2,7 @@
 
 ## What this repo is
 
-- Spec-only repo: no code yet — just `vegetable_contractor_complete_end_to_end_prompt.md` (v2.7), the single source of truth for a Vegetable Contractor management app (mobile-first, single-user contractor, English-only, ₹).
+- Spec-only repo: no code yet. `vegetable_contractor_complete_end_to_end_prompt.md` (v2.7) is the **single source of truth** for a Vegetable Contractor management app (mobile-first, single-user contractor, English-only, ₹). `SCREENS_MASTER_LIST.md` (v1.1) is a **derived companion** — screen-by-screen blueprint, traceability and acceptance matrix built from the spec; it is never authoritative (on conflict, the spec wins).
 - **Do NOT generate any app code yet** — this file exists for spec refinement only. Even if the spec looks complete, wait until the user explicitly confirms all requirements are fulfilled and asks to build; until then, work is limited to improving the spec/AGENTS.md, never creating source files.
 - No build/test/lint tooling exists yet. Add verified commands to this file as tooling is introduced.
 
@@ -11,6 +11,7 @@
 - Read the full spec before writing feature code. Every figure in it derives from the canonical dataset in §16 — use §16 as the math acceptance test (e.g., Day 1: cost ₹37,000, revenue ₹43,500, profit +₹6,500; Day 2: profit +₹2,200 at blended ₹31.50/kg; Home pending ₹36,500 = billed pending ₹5,550 + accrued ₹30,950).
 - §16.4–§16.6 and §16.9 are marked **Standalone**: decision-flow exercises that never alter the Day 1–2 ledger (§16.2–§16.3) — keep that isolation when editing.
 - If §16's canonical numbers ever change, re-derive and update every dependent example (§6.1 Home cards, §6.7 Review analysis, §10 history table, §16.8–§16.9) — the doc contradicts itself otherwise. When amending the spec, also append a change-summary line at the top (the v1→v2.7 pattern is its only changelog).
+- Keep `SCREENS_MASTER_LIST.md` in sync in the same pass: spec edits that touch screens, overlays, settings groups, alerts or any quoted §16 figure require updating its counts (screens, BS/DL/G, modules), workflow lines and traceability tables — then bump its version line; on conflict, the spec wins.
 - §19 is the build checklist/acceptance gate; §17 the screen/state map; §18 the UX state rule (no dead ends; every action gets normal/edit/cancel/error/empty/success/confirmation states).
 
 ## Accounting rules agents most often break

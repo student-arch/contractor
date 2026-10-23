@@ -2,7 +2,7 @@
 
 > **v1.1 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.7)** — the single source of truth.
 >
-> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (only the SRS and `AGENTS.md`). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is therefore built strictly from the SRS v2.7 (v1.0 was derived from SRS v2.6; updated to v2.7 for the English-only change — S03 Language Selection retired). **No original file was modified.** All figures quoted below derive from the §16 canonical dataset.
+> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (at generation time the repo held only the SRS and `AGENTS.md`; this file itself is the generated deliverable). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is therefore built strictly from the SRS v2.7 (v1.0 was derived from SRS v2.6; updated to v2.7 for the English-only change — S03 Language Selection retired). The SRS was not modified to produce it. All figures quoted below derive from the §16 canonical dataset.
 
 ---
 
