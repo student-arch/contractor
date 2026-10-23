@@ -1,5 +1,5 @@
 # VEGETABLE CONTRACTOR BUSINESS MANAGEMENT APP
-## Complete End-to-End UI/UX Design & Application Build Specification (v2.6)
+## Complete End-to-End UI/UX Design & Application Build Specification (v2.7)
 
 > **Document status:** Single source of truth. This version consolidates the earlier 101-section draft into a non-repetitive, internally consistent spec. One canonical worked example (Section 16) is used everywhere; all figures in this document derive from it.
 >
@@ -16,6 +16,8 @@
 > **Change summary v2.5:** **Other Day Entries get the same correction window** as carts — errors fixed by end of the next day, locked after, repair-by-compensating-entry (§2.8 rule 6); **Data Recording Standard (§2.11)** — every fact stored as a structured, dated, attributed row so the ledger is AI/analysis-ready from day one; **§21 Future Roadmap** — Data → Insight → Predictive → AI assistant, explicitly outside the v1 build but reading exactly the data §2.11 guarantees; **multi-year performance** — pagination/virtualized lists and precomputed aggregates (§10, §11); **inactive institutions stay safe** — deactivation warns about active tenders/unbilled (accrued) dues (§7.4, §15.2); **quality/grade note** optional on purchase lines — the field future price-vs-quality AI learns from (§6.3); single editable **reason editor** shared by deductions, waste/loss and rejection reasons (§13); **Home pending-split example re-derived from the canonical dataset** (§6.1, §7.5.6).
 >
 > **Change summary v2.6:** **Iconography mandated — Hugeicons** (§5.5): single library, Stroke Rounded style family only, color/weight carries state instead of style switching, icons always paired with Telugu-first text, per-slot assignment from the §17 screen map; reflected in §19 checklist.
+>
+> **Change summary v2.7:** **Localization removed — the app is English-only** (§5.4): Telugu default/secondary dropped everywhere; the Language selection step is removed from first-time setup (§4.1) and Settings (§13, §17); item master data carries a single name field (§5.3, §5.4, §6.2, §13); search matches item names, no secondary names (§6.2); memos/bills, alerts and all documents in English (§7.5.5, §14); icons pair with text in plain English (§5.5); alert name harmonized to "**Payment Due Alert**" §7.5.6 ↔ §14; §19 checklist updated. (Earlier change-summaries mention Telugu because they describe older versions — v2.7 supersedes them.)
 
 ---
 
@@ -265,8 +267,7 @@ Floating **frosted-glass bottom navigation** (§5.1) with 5 destinations:
 ## 4.1 First-Time Setup Flow (Once)
 
 ```
-Splash → Welcome/Intro → Language (Telugu / English — §5.4)
-→ Business Profile (name, currency ₹, default unit kg)
+Splash → Welcome/Intro → Business Profile (name, currency ₹, default unit kg)
 → Initial Items (vegetables + groceries, images, units) → Initial Institutions
 (+ contracts + tender period + fixed tender prices) → Setup Complete → Home
 ```
@@ -329,7 +330,7 @@ Surfaces & layout:
 - Frosted-glass treatment for: **sticky top app bar**, **floating bottom navigation**, the **floating cart indicator** (§3.1), **bottom sheets/selectors**, and **modals**.
 - Recipe: translucent light fill + backdrop blur + hairline light border + soft shadow — content gently visible behind; **graceful fallback** to a solid light surface where blur isn't supported; glass never reduces legibility (strong enough fill for numbers to stay perfectly readable).
 
-**Component library (restyle, don't shrink):** primary/secondary/danger **pill** buttons, input fields, **numeric keypads** (mandatory for money/qty — not the generic keyboard), select fields, search bars, **product-style item cards** (large image + name + Telugu name + unit + live price hint), financial/institution/inventory cards, tables, tabs, badges/chips, progress bars, bottom sheets, modals, confirmation dialogs, toasts, empty/skeleton/error/success states. All share one typography scale, radius system, spacing rhythm, Hugeicons iconography (§5.5), and interaction pattern.
+**Component library (restyle, don't shrink):** primary/secondary/danger **pill** buttons, input fields, **numeric keypads** (mandatory for money/qty — not the generic keyboard), select fields, search bars, **product-style item cards** (large image + name + unit + live price hint), financial/institution/inventory cards, tables, tabs, badges/chips, progress bars, bottom sheets, modals, confirmation dialogs, toasts, empty/skeleton/error/success states. All share one typography scale, radius system, spacing rhythm, Hugeicons iconography (§5.5), and interaction pattern.
 
 **One CRUD experience everywhere:** every entity (items, prices, institutions, tenders, expenses, deductions) follows the same soft-modern interactions — full-width **"＋ Add"** rows/cards, tap card → detail → **Edit**, **Delete** always behind a gentle confirmation dialog; **Calendar/History** browsing renders as clean rounded date cards (§10); **Update Record** (the correction window & revisions, §2.8) presents as a friendly **"Edit" → "Update notice (R2)"** flow in plain words — the same ease as updating a shopping list, never a scary ledger edit.
 
@@ -343,25 +344,24 @@ Visual hierarchy over charts — large prominent numbers are the primary visuali
 
 ## 5.3 Image Usage (Large, Hero-Style)
 
-- **Large, clean, realistic vegetable/grocery photos are the hero of item cards** — produce-commerce presentation: the image fills most of the card (top, consistent 4:3/1:1 crop), with name (English + Telugu, §5.4), unit and live price hint beneath.
+- **Large, clean, realistic vegetable/grocery photos are the hero of item cards** — produce-commerce presentation: the image fills most of the card (top, consistent 4:3/1:1 crop), with name, unit and live price hint beneath.
 - Item Detail shows a large hero image above quantity/rate fields. Inventory and price lists reuse the same photos for instant recognition.
 - Photography rules: fresh, bright, appetizing but honest (no gloss or marketplace styling); one canonical image per item (managed in Item Master, §13); image = identification aid only — no badges, banners, or promotional overlays.
 
-## 5.4 Localization (Telugu-First)
+## 5.4 Language (English-Only)
 
-- The contractor is a **Telugu speaker**: ship **Telugu as the default language, with English as the secondary**; selectable at first-time setup (§4.1) and changeable in Settings (§13).
-- All fixed strings — labels, buttons, validation messages, states — are fully translated in both languages. No half-translated screens.
-- **Simple language rule:** short everyday words, 1–2-line sentences, zero finance jargon ("this much profit" not "net margin realization"; errors ≤ 8 words). Written for a non-technical user who is a Telugu speaker first.
-- Item master data carries **Name (English) + Telugu name** on every item; either can be shown across the app:
-  - Tomato — టమాటా · Potato — బంగాళదుంప · Onion — ఉల్లిపాయ · Brinjal — వంకాయ · Lady's Finger — బెండకాయ
+- The app ships in **English only** — a single language everywhere, with **no language selection at first-time setup (§4.1) and no Language setting (§13)**.
+- All fixed strings — labels, buttons, validation messages, states — are written in plain English consistently on every screen. No other language ships.
+- **Simple language rule:** short everyday words, 1–2-line sentences, zero finance jargon ("this much profit" not "net margin realization"; errors ≤ 8 words). Written for a non-technical user.
+- Item master data carries a single **Name** per item (e.g., Tomato, Onion — §6.2); there is no secondary-language name field, and search matches item names (§6.2).
 - Numbers stay in Western Arabic numerals; ₹ symbol everywhere.
-- All generated documents (delivery memos, tender-period bills, reports, exports) inherit the selected language.
+- All generated documents (delivery memos, tender-period bills, reports, exports) are in English.
 
 ## 5.5 Iconography — Hugeicons (Mandatory Icon System)
 
 - The app uses **Hugeicons** (hugeicons.com) as its **single icon library** — no other icon sets, framework default glyphs, or hand-drawn SVGs anywhere in the UI.
 - **One style family only:** Hugeicons **Stroke Rounded** across every screen — one stroke weight, rounded caps; filled/duotone/solid variants are not mixed in for accent use. State emphasis (active tab, Completed ✓, danger) is expressed through **color and weight of use**, never by switching icon style.
-- **Icons always pair with text** (Telugu default, §5.4) — an icon is a recognition aid, never the sole label; money, quantities, and statuses are never icon-only.
+- **Icons always pair with text** (plain-English labels, §5.4) — an icon is a recognition aid, never the sole label; money, quantities, and statuses are never icon-only.
 - **Every icon slot is assigned by section 17's screen map:** one icon per navigation tab (Home · Vegetables · Cart · Inventory · More), each primary action, each alert type (§14 — payment/rupee, aging/clock, waste/damage, backup, tender-end/calendar, seller-payable). Same semantic → same icon file, reused everywhere.
 - **Sizing & alignment:** 24 px for nav/primary buttons, 20 px inline; 4-px grid alignment; stroke color follows `currentColor` so icons adapt to text, status, and theme colors.
 - **Practical rules:** import only the icons actually used; pin one library version for the whole build; respect the chosen Hugeicons license (free or pro pack); no per-screen custom icons.
@@ -402,7 +402,7 @@ Home exists in three variants: Empty (no data at all), Active Cart, Completed Da
 ## 6.2 Vegetable / Item List
 
 - Large visual cards: image, name, category, default unit, current cart quantity if added ("500 kg in Cart"), state badge ("Added ✓" when in cart), tap-to-continue action.
-- Search: `Search vegetables or items...` — also matches groceries and custom items; search matches **English and Telugu names** (§5.4).
+- Search: `Search vegetables or items...` — also matches groceries and custom items; search matches **item names** (§5.4).
 - Filters: **All · Vegetables · Groceries · Other Items** (plus: show deactivated only via Settings → Item Management).
 - Categories: Vegetables (Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach, …), Groceries (Rice, Dal, Oil, Sugar, …), Other Items (contract items). Contractor can add custom items.
 
@@ -606,7 +606,7 @@ Institutions commonly **deduct money at collection time** — damaged bags, qual
 
 ### 7.5.5 Memos & Bills — Generated Only On Demand
 
-- **No daily sharing.** Memo/bill documents are generated **only when the institution asks** — typically at or near payment time — and shared as a **screenshot/image or PDF** (Telugu default, §5.4).
+- **No daily sharing.** Memo/bill documents are generated **only when the institution asks** — typically at or near payment time — and shared as a **screenshot/image or PDF** (in English — §5.4).
 - Two document types:
   - **Transaction memo** (per supply): institution, supply date, memo number, items, quantity, tender rate (frozen — §2.4), amount per line, total, signature space.
   - **Period bill** (the assembled §7.5.2 record): the document used to collect payment months later; shows `Supply − Deductions = Net to collect`.
@@ -618,7 +618,7 @@ Institutions commonly **deduct money at collection time** — damaged bags, qual
 
 - Home shows the pending figure **split** (§6.1): as of 20 Dec (§16.8): `Pending ₹36,500 — Billed pending ₹5,550 · Unbilled (accrued) ₹30,950`.
 - The **Payments & Dues overview** is reachable from **More**: per-institution rows (accrued, billed pending, credit balance, oldest aging) with a quick **Record Payment** action.
-- Alerts (§14): **Payment Overdue** (period end + Overdue Alert Days passed with unpaid billing) and **Long-Pending Dues** (contractor-set aging threshold).
+- Alerts (§14): **Payment Due Alert** (period end + Overdue Alert Days passed with unpaid billing) and **Long-Pending Dues** (contractor-set aging threshold).
 - Reports get a **Payment Dues report** and a **Cash-vs-Accrued summary** (§12).
 
 ### 7.5.7 Post-Lock Adjustments (after the correction window closes)
@@ -795,9 +795,9 @@ Keep settings light:
 | Group | Contents |
 |-------|----------|
 | Institutions | Manage institution profiles, fixed tender prices |
-| Items | Vegetable/grocery lists, add/edit items, images (with English + Telugu names, §5.4), units, **purchase-unit conversion** (bag/sack/crate = N base units, §6.3), **shelf-life alert age (days)** per item, **Deactivate Item** (never delete; keeps historical references — old transactions still show the item) |
+| Items | Vegetable/grocery lists, add/edit items, images, single Name per item (§5.4), units, **purchase-unit conversion** (bag/sack/crate = N base units, §6.3), **shelf-life alert age (days)** per item, **Deactivate Item** (never delete; keeps historical references — old transactions still show the item) |
 | Business | Business Name, Currency (₹ default), Default Unit (kg), default shelf-life policy |
-| App | Appearance/Theme, **Language — Telugu (default) / English** (§5.4), Expense category editor, **single reason editor** — one editable set shared by payment **deductions** (§7.5.3), inventory **waste/loss marks** (§8.6) and **rejection reasons** (§6.6), default Overdue Alert Days, **backup reminder interval** (default 7 days) |
+| App | Appearance/Theme, Expense category editor, **single reason editor** — one editable set shared by payment **deductions** (§7.5.3), inventory **waste/loss marks** (§8.6) and **rejection reasons** (§6.6), default Overdue Alert Days, **backup reminder interval** (default 7 days) |
 | Data | **Backup** (with confirmation → complete feedback; **version-tagged** files: schema version + timestamp), **Restore** (validates version before confirming — destructive warning), **Export Data** (CSV/JSON), **Import Data** (validation + confirm), **Delete All Data** (double confirmation, warns of permanent loss) |
 | About | App info, version, About |
 
@@ -823,7 +823,7 @@ Shown on Home (badged) and optionally local notifications:
 | Transaction Completed | Cart confirmed (informational) |
 | Waste/Loss Alert | A waste action was recorded (informational) |
 
-All alert text is served in the selected language (Telugu default — §5.4).
+All alert text is in plain English (§5.4).
 
 ---
 
@@ -1079,7 +1079,7 @@ All three render as compact badge-rows in History (Sale/Waste/Settlement), ancho
 | Payables | Seller Payables (More) | Seller rows: owed / aging / status (Open · Partly settled · Settled) · purchase flag paid/credit · settlements FIFO · due-date alerts (§9.1) |
 | Profit & Loss | P/L Dashboard | Overall · Daily · Weekly · Monthly · Custom · Institution-wise · **Contract-wise (Tender)** · Vegetable-wise · expense impact · revenue/investment breakdown · margin · loss analysis · best/worst performer |
 | Reports | Reports Dashboard | Daily/Weekly/Monthly/Institution/**Contract**/Vegetable/Inventory/Expense/P-L/Custom · **Payment Dues** · **Cash-vs-Accrued** · **Payables** · **Spoilage by Item** · detail · export |
-| Settings | Settings Dashboard | Institutions · Item management (incl. purchase units, shelf-life ages, Telugu names) · Business (name/currency/units) · Expense categories · Language (Telugu default / English) · Overdue Alert Days · backup reminder interval · Appearance · About |
+| Settings | Settings Dashboard | Institutions · Item management (incl. purchase units, shelf-life ages) · Business (name/currency/units) · Expense categories · Overdue Alert Days · backup reminder interval · Appearance · About |
 | Data Mgmt | Backup / Restore / Export / Import | Confirmations, destructive warnings, progress, completion feedback, Delete All Data (double confirm) |
 | Notifications | Attention Center | All alerts from §14 |
 | Modals / Sheets | Selectors & Confirmations | Institution · Item · Unit · Expense category · Inventory action · Loss reason · Rejection reason · **Select tender** · **Record payment (received + deductions)** · **Settle seller payment** · **Add post-lock adjustment** · Edit qty · Edit rate · Add expense · Remove item · Mark waste · Inventory usage · Inventory sale · Cart completion · Data restore · Data deletion |
@@ -1111,7 +1111,7 @@ For every major action, design and connect the relevant:
 - [ ] One active cart; confirm whole cart once; expenses allocated per §2.5.
 - [ ] Mobile-first responsive layout; sidebar on desktop with same logic (§3).
 - [ ] Fast, minimal-typing UX: visual selection, auto rates, auto inventory detection, instant totals, bag-based purchase entry, **last-rate prefill** (§4.2, §5, §6.3).
-- [ ] **Telugu default + English secondary**, full translation everywhere including memos/bills (§5.4).
+- [ ] **English-only UI** — one language everywhere including memos/bills, alerts and documents; no language switcher (§5.4).
 - [ ] **Hugeicons is the single icon system** — Stroke Rounded family only, one pinned version, icon+text pairs on every action, one icon per alert type (§5.5, §17 map).
 - [ ] Memos/bills generate **only when the institution asks** — screenshot/PDF, Shared ✓ marker, outdated re-share warning (§7.5.5).
 - [ ] Dues must reconcile: **Billed − Deductions − Received = 0** for "Fully Paid"; deductions also hit P&L on their own date (§7.5.3, §7.5.7, formulas 14–15).
@@ -1123,7 +1123,7 @@ For every major action, design and connect the relevant:
 - [ ] **Payables**: purchase payment flag (paid/credit + seller + due date), seller dues aging, settlements move cash only — never P&L (§9.1, §16.9).
 - [ ] Cart-open **inventory reservations** deduct from availability and release on discard/revision; lots deplete only at Confirm (§8.4).
 - [ ] **Tender picker per allocation row** with the period-covering default rule; Add Price asks which tender (§6.5).
-- [ ] Search matches **English and Telugu** names (§5.4, §6.2); optional **photo evidence** per transaction/adjustment (§10); **version-tagged backups** with restore validation (§13); **Spoilage by Item** report (§12); **Contract-wise P&L** — one profit/loss line per tender per institution incl. deductions (§11).
+- [ ] Search matches **item names** (§5.4, §6.2); optional **photo evidence** per transaction/adjustment (§10); **version-tagged backups** with restore validation (§13); **Spoilage by Item** report (§12); **Contract-wise P&L** — one profit/loss line per tender per institution incl. deductions (§11).
 - [ ] **Data Recording Standard honored everywhere**: typed rows with date · item · qty · rate · source · reason codes; no free-text numbers; append-only ledger with ID integrity; export mirrors the ledger columns (§2.11).
 - [ ] Standalone entries (sale/waste/adjustment/settlement) share the cart correction window; post-window fixes are compensating entries (§2.8).
 - [ ] Deactivating an institution keeps receivables & contract P&L intact; new allocations blocked; confirmation names open tenders/dues (§7.4).
@@ -1150,7 +1150,7 @@ The finished app should feel like this:
 > "I add it to my cart." → "I select the institution — the app already knows its fixed tender price."
 > "I say how much goes where." → "The app calculates revenue, allocated cost, and profit."
 > "A rejection? I choose inventory or loss." → "Old stock? I reuse it — no double cost."
-> "Supplies done. When the institution asks for proof, one tap gives me the memo as a screenshot — in Telugu."
+> "Supplies done. When the institution asks for proof, one tap gives me the memo as a screenshot — in English."
 > "I review everything — items, institutions, inventory, expenses."
 > "Everything looks right." → "I press Confirm & Complete once. (Typo? I correct it by tomorrow evening — then it's locked.)"
 > "The transaction is saved. Inventory, history, and profit/loss are updated."
@@ -1174,7 +1174,7 @@ The app's stated long-term goal: **learn from the accumulated ledger — prices,
 | **1 · v1 build** | Exact spec — screens, formulas, reports, receivables, payables | — |
 | **2 · Insights (post-v1, same app)** | Requests beyond reports: purchase-rate **volatility per item/seller/season**, margin trend per **contract (§11)**, waste rate by item/reason, institution payment-behavior profiles, Tender Price Benchmark ("Institution B pays ₹45/kg for tomato while A pays 40 — renegotiate before period start") | purchase lines (rate, source, quantity, date) · supply allocations & tender outcomes |
 | **3 · Predictive** | "what to buy tomorrow" — demand patterns per institution (weekday/season effects), price forecasts per item from mandi history, contract net-profit projections incl. expected deductions & payment timing | full transaction ledger including payment/aging history |
-| **4 · AI assistant** | ask in Telugu: *"Which tender made losses? Tomato price trend? Buy onions tomorrow?"* — answers and suggestions generated from the contractor's own ledger; every suggestion routes through the app's normal decision points (§4.3) — the contractor always decides | reads only §2.11 ledger rows (photos and master-data settings are not read) |
+| **4 · AI assistant** | ask: *"Which tender made losses? Tomato price trend? Buy onions tomorrow?"* — answers and suggestions generated from the contractor's own ledger; every suggestion routes through the app's normal decision points (§4.3) — the contractor always decides | reads only §2.11 ledger rows (photos and master-data settings are not read) |
 
 Standing rules for all future phases (binding, though not v1-scoped):
 

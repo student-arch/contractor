@@ -1,8 +1,8 @@
 # SCREENS MASTER LIST — Vegetable Contractor Management App
 
-> **v1.0 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.6)** — the single source of truth.
+> **v1.1 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.7)** — the single source of truth.
 >
-> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (only the SRS and `AGENTS.md`). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is therefore built strictly from the SRS v2.6. **No original file was modified.** All figures quoted below derive from the §16 canonical dataset.
+> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (only the SRS and `AGENTS.md`). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is therefore built strictly from the SRS v2.7 (v1.0 was derived from SRS v2.6; updated to v2.7 for the English-only change — S03 Language Selection retired). **No original file was modified.** All figures quoted below derive from the §16 canonical dataset.
 
 ---
 
@@ -20,10 +20,10 @@ Classification:
 | **V** — State variant | Not a separate surface; a documented state of the owning screen. |
 | **G** — Global component | Reused surface present across screens (nav bar, keypad, toasts, global states). |
 
-Every screen and flow must honor **§18**: `Normal → Edit → Cancel → Error → Empty → Success → Confirmation → Back Navigation` and the **§17 Global States** row (Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast/Snackbar · Bottom sheet · Modal · Full-screen error recovery) — applied to **all 42 screens** (defined once below; mapped screen-by-screen in the **§9 universal-element compliance matrix**).
+Every screen and flow must honor **§18**: `Normal → Edit → Cancel → Error → Empty → Success → Confirmation → Back Navigation` and the **§17 Global States** row (Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast/Snackbar · Bottom sheet · Modal · Full-screen error recovery) — applied to **all 41 screens** (defined once below; mapped screen-by-screen in the **§9 universal-element compliance matrix**).
 
 **Design constraints applied to every screen (not repeated per-screen):**
-Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Rounded only, icon always paired with text (§5.5, §17) · frosted-glass app bar / bottom nav / sheets / modals with solid fallback (§5.1) · numeric keypad for all money & quantity input (§5.1, §5.2) · green = profit, red = loss everywhere (§5.2) · ₹ & Indian digit grouping (§2.7) · full-width single-column cards on mobile, 2-col/table layouts on tablet-desktop via sidebar (§5.1, §3.2) · one canonical item image reused (§5.3) · gentle confirmation behind **every** Delete — one CRUD pattern everywhere (§5.1, §15.3) · all alerts translated (§14) · offline-first, sync/backup optional and non-blocking (§2.8 rule 3, §15.2).
+English-only UI — one language everywhere incl. documents, no language switcher (§5.4) · Hugeicons Stroke Rounded only, icon always paired with text (§5.5, §17) · frosted-glass app bar / bottom nav / sheets / modals with solid fallback (§5.1) · numeric keypad for all money & quantity input (§5.1, §5.2) · green = profit, red = loss everywhere (§5.2) · ₹ & Indian digit grouping (§2.7) · full-width single-column cards on mobile, 2-col/table layouts on tablet-desktop via sidebar (§5.1, §3.2) · one canonical item image reused (§5.3) · gentle confirmation behind **every** Delete — one CRUD pattern everywhere (§5.1, §15.3) · alert and document text in plain English (§14, §5.4) · offline-first, sync/backup optional and non-blocking (§2.8 rule 3, §15.2).
 
 ---
 
@@ -32,14 +32,14 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 | Metric | Count |
 |--------|-------|
 | Feature modules | **17** (M01–M17; M06 is flows-only by design) |
-| Full screens (S01–S42) | **42** |
+| Full screens (S01–S42) | **41** (S03 retired in SRS v2.7 — English-only; numbering unchanged) |
 | Bottom-sheet flows (BS-01–BS-22) | **22** |
 | Dialog definitions (DL-01–DL-14) | **14** |
 | Overlay definitions total (BS + DL) | **36** (covers all 21 items of §17's "Modals / Sheets" row + 15 additional overlays mandatory in the SRS body: §6.3, §6.6, §7.5.2, §7.5.5, §8.3, §8.5–8.6, §9.1, §10, §12, §13, §15.2, §17 image-mgmt/revision-selector) |
 | Global components | **10** (G1–G10) |
 | Workflows documented | **11** (WF-01–WF-11) |
 | SRS §17 map rows covered | **40/40 screens + 2 meta rows (modals, global states)** |
-| Universal-element compliance matrix (§9) | **42 screens × 13 elements** (7 always-on + 6 conditional checks per screen) |
+| Universal-element compliance matrix (§9) | **41 screens × 13 elements** (7 always-on + 6 conditional checks per screen) |
 
 ---
 
@@ -47,7 +47,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 
 | Module | Name | Screens | Flow surfaces |
 |--------|------|---------|---------------|
-| M01 | Onboarding & Setup | S01–S07 (7) | — |
+| M01 | Onboarding & Setup | S01–S07 (6 active; S03 retired) | — |
 | M02 | Home Dashboard & Navigation | S08 (1) | G1, G2, G6 |
 | M03 | Items & Purchase Entry | S09–S11 (3) | BS-01, BS-16*, BS-21, DL-08 |
 | M04 | Daily Cart | S12 (1) | BS-16, DL-01, DL-09, DL-10, G2 |
@@ -88,16 +88,11 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 - **SRS:** §4.1, §17 ("Slides, Skip")
 - **Fields:** Intro slides (content **not specified** — see Gap G-5).
 - **Actions:** Next; **Skip**.
-- **Nav:** out → S03.
-- **States:** Normal; skipped → jumps to S03; back navigation honored (§18).
+- **Nav:** out → S04.
+- **States:** Normal; skipped → jumps to S04; back navigation honored (§18).
 
-#### S03 · Language Selection (first run)
-- **SRS:** §4.1, §5.4, §13
-- **Fields:** Language — **Telugu (default)** / English.
-- **Actions:** Select; Continue.
-- **Nav:** out → S04. Same control reused in Settings → App (S37).
-- **States:** Default = Telugu preselected; selection persists.
-- **Requirements:** Telugu-first everywhere incl. documents (§5.4); changeable later in Settings (§13).
+#### S03 · (Retired — numbering intentionally left unused)
+- **Status:** Removed in SRS v2.7 — the app is **English-only** (§5.4); the first-run Language selection step no longer exists (§4.1). The S03 identifier is not reused; no screen maps to it.
 
 #### S04 · Business Profile Setup (First-Time Setup)
 - **SRS:** §4.1, §17 ("First-Time Setup: Business profile, currency ₹, default unit"), §13 Business group
@@ -108,7 +103,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 
 #### S05 · Initial Items
 - **SRS:** §4.1, §17 ("Pre-seeded vegetables/groceries, custom item")
-- **Fields:** Seeded catalog (Vegetables: Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach…; Groceries: Rice, Dal, Oil, Sugar…; §6.2) each with image, English + Telugu name, unit; per-item defaults (shelf-life alert ages per §16.1: leafy 1d, veg 3d, groceries none — full seed table not enumerated, Gap G-6).
+- **Fields:** Seeded catalog (Vegetables: Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach…; Groceries: Rice, Dal, Oil, Sugar…; §6.2) each with image, name, unit; per-item defaults (shelf-life alert ages per §16.1: leafy 1d, veg 3d, groceries none — full seed table not enumerated, Gap G-6).
 - **Actions:** Edit item (→ S11 shared form); Add custom item; Continue.
 - **Nav:** out → S06.
 - **States:** Seeded list; empty-if-skipped variant; custom-item add form inline.
@@ -152,8 +147,8 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 
 #### S09 · Item Home / All Items
 - **SRS:** §6.2, §17 (Item Home; Search/Filter row), §5.1/§5.3
-- **Content:** Full-width single-column card grid (2 columns on large screens, §5.1); product-style cards: **large hero image** (4:3/1:1 crop), Name (English) + Telugu name, category, default unit, **live price hint**, state badge **"Added ✓"** and "500 kg in Cart" when added, tap-to-continue.
-- **Search (V, §17 "Search / Filter Items" row):** `Search vegetables or items…` — matches **English and Telugu names** (§5.4, §6.2), groceries and custom items; **No-results state** (§17).
+- **Content:** Full-width single-column card grid (2 columns on large screens, §5.1); product-style cards: **large hero image** (4:3/1:1 crop), Name, category, default unit, **live price hint**, state badge **"Added ✓"** and "500 kg in Cart" when added, tap-to-continue.
+- **Search (V, §17 "Search / Filter Items" row):** `Search vegetables or items…` — matches **item names** (§5.4, §6.2), groceries and custom items; **No-results state** (§17).
 - **Filters (V):** All · Vegetables · Groceries · Other Items. Deactivated items hidden (visible only via Settings → Item Management, S35 — §6.2, §13).
 - **Actions:** Tap card → S10; (from S35) also entry into S11 editor context.
 - **Nav:** in: G1 tab, S08 quick action. out: S10.
@@ -176,7 +171,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 
 #### S11 · Add / Edit Custom Item (Item Master editor)
 - **SRS:** §17 ("Add/Edit Custom Item: Image mgmt, unit selection, deactivate confirmation, deactivated list, item history"), §13 Items, §6.2
-- **Fields:** Name (English)* · Telugu name* · Category (Vegetables / Groceries / Other Items) · Unit (kg/litre/sack — one per item, §15.2) · **Purchase-unit conversion** (optional: bag/sack/crate/box = N base units, §6.3) · **Shelf-life alert age (days)** (defaults leafy 1 / veg 3 / groceries none; §8.1, §16.1) · **Image — one canonical per item (§5.3)** — set/replace via **BS-21** Image Picker (bundled vs captured vs gallery mechanism unresolved, Gap G-4) · Active flag.
+- **Fields:** Name* · Category (Vegetables / Groceries / Other Items) · Unit (kg/litre/sack — one per item, §15.2) · **Purchase-unit conversion** (optional: bag/sack/crate/box = N base units, §6.3) · **Shelf-life alert age (days)** (defaults leafy 1 / veg 3 / groceries none; §8.1, §16.1) · **Image — one canonical per item (§5.3)** — set/replace via **BS-21** Image Picker (bundled vs captured vs gallery mechanism unresolved, Gap G-4) · Active flag.
 - **Actions:** Save; **Deactivate** → DL-05 (never delete; ID integrity for historical rows, §2.11.4, §13); view deactivated list (from S35 only, §6.2); view **item history** (past purchase rates/usage — read-only ledger view, §17).
 - **Nav:** in: S09 context; S35. out: back to list.
 - **States:** Normal / Edit / Cancel / Error / Success toast ("Institution Created ✓"-style feedback §15.4 pattern) / Deactivated view.
@@ -323,7 +318,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
   - **Credit balance display:** "Advance from Institution A: ₹X" — excess collections / downward-revision excesses; **auto-applied FIFO to the next period's bill** (§7.5.3).
   - **Payment History (section, §7.5.4):** all receipts per institution with period allocations; running pending totals; **Payments summary row** (Total Billed · Collected · Pending).
   - **Post-Lock Adjustments (section, §7.5.7):** linked list ("Original + Adjustments") also mirrored in S29.
-  - **Payment-overdue badges** (Payment Overdue alert trigger §14).
+  - **Payment-overdue badges** (Payment Due Alert trigger §14).
 - **Actions:** **Record Payment** → BS-09 (amount received + deduction lines, FIFO w/ manual targeting override) · **Prepare Period Bill** → BS-10 · **Record Adjustment** → BS-11 · **Generate memo/bill** → BS-12.
 - **Nav:** in: S19 (Receivables & Payments), S23 target. out: BS-09/10/11/12.
 - **States:** Empty (no dues — cash buyer); per-period states; **"Shared ✓" / Outdated markers** on previously shared memos/bills after a revision or adjustment (§7.5.5); validation §15.1 (deductions+received > pending; shared-bill edit warning; downward revision credit notice — see Gap G-1 tension).
@@ -331,7 +326,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 
 #### S23 · Dues Overview (More)
 - **SRS:** §7.5.6, §17 ("Per-institution rows: accrued / billed pending / credit balance / oldest aging · split pending totals · quick Record Payment")
-- **Content:** Per-institution rows: accrued, billed pending, credit balance, oldest aging; **split pending totals** — canonical (§16.8): `Pending ₹36,500 = Billed pending ₹5,550 + Unbilled (accrued) ₹30,950`; quick **Record Payment** → BS-09; alert-driven (Payment Overdue, Long-Pending Dues §14); Cash-vs-Accrued report link (§12).
+- **Content:** Per-institution rows: accrued, billed pending, credit balance, oldest aging; **split pending totals** — canonical (§16.8): `Pending ₹36,500 = Billed pending ₹5,550 + Unbilled (accrued) ₹30,950`; quick **Record Payment** → BS-09; alert-driven (Payment Due Alert, Long-Pending Dues §14); Cash-vs-Accrued report link (§12).
 - **Nav:** in: More (S08/G1). out: S22, BS-09.
 - **States:** Empty ("all clear — nothing pending"); per-institution rows w/ aging (green→red aging emphasis allowed only as status color discipline: green=profit/red=loss, §5.2).
 
@@ -469,13 +464,13 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 ### M16 · Settings & Data Management (§13, §17 "Settings" + "Data Mgmt" rows)
 
 #### S34 · Settings Dashboard
-- **SRS:** §13 (groups table), §17 ("Settings Dashboard: Institutions · Item management · Business · Expense categories · Language · Overdue Alert Days · backup reminder interval · Appearance · About")
+- **SRS:** §13 (groups table), §17 ("Settings Dashboard: Institutions · Item management · Business · Expense categories · Overdue Alert Days · backup reminder interval · Appearance · About")
 - **Content:** Hub rows → Institutions (S17) · Items (S35) · Business (S36) · App (S37, incl. Expense Category Editor S38 and Reason Editor S39) · Data (S40) · About (S41).
 - **Nav:** pure hub; out per row.
 
 #### S35 · Item Management (Settings)
 - **SRS:** §13 Items, §17 (Settings row), §6.2 (deactivated list view)
-- **Content:** Full item list incl. **Deactivated** filtering ("show deactivated only via Settings → Item Management", §6.2); each item: English + Telugu names (§5.4), images (canonical mgmt §5.3 · replace via **BS-21**), units, **purchase-unit conversion** (bag/sack/crate = N base units §6.3), **shelf-life alert age (days)** per item.
+- **Content:** Full item list incl. **Deactivated** filtering ("show deactivated only via Settings → Item Management", §6.2); each item: name (§5.4), images (canonical mgmt §5.3 · replace via **BS-21**), units, **purchase-unit conversion** (bag/sack/crate = N base units §6.3), **shelf-life alert age (days)** per item.
 - **Actions:** Add/Edit (→ S11 shared form); **Deactivate Item** → DL-05 (**never delete; keeps historical references — old transactions still show the item**, §13, §2.11.4); reactivate.
 - **Nav:** out: S11.
 
@@ -486,7 +481,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 
 #### S37 · App Settings
 - **SRS:** §13 App, §14 thresholds, §17
-- **Fields:** Appearance/Theme · **Language — Telugu (default) / English** · **default Overdue Alert Days** · **backup reminder interval** (default 7 days) · links to Expense Category Editor (S38) and Reason Editor (S39).
+- **Fields:** Appearance/Theme · **default Overdue Alert Days** · **backup reminder interval** (default 7 days) · links to Expense Category Editor (S38) and Reason Editor (S39).
 - **Gap flags (G-2):** the SRS also requires **contractor-set Long-Pending Dues aging threshold** (§7.5.6), **Tender Ending Soon N days** (§14, default 7), **Seller Payable alert N days** (§9.1) but §13 does not explicitly name a settings row for them — this screen is the natural home (see Gaps).
 
 #### S38 · Expense Category Editor
@@ -520,7 +515,7 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
 #### S42 · Attention Center
 - **SRS:** §14 (13 alert types), §17 ("All alerts from §14"), §6.1 (badged section on Home)
 - **Classification note:** §17 lists it as a module row (screen); §14 says "shown on Home (badged) and optionally local notifications". Treated here as a reachable full list view (badge → S42); surface ambiguity logged as Gap G-7.
-- **Content — all §14 alerts (each with icon from §5.5 per-alert slot and Telugu copy):**
+- **Content — all §14 alerts (each with icon from §5.5 per-alert slot, plain-English copy per §5.4):**
   | # | Alert | Trigger (per §14) | Surfaces |
   |---|-------|-------------------|----------|
   | 1 | Rejected Stock Alert | Rejected qty awaiting inventory/waste decision | S08, S24 |
@@ -536,14 +531,14 @@ Telugu default + English secondary (§5.4, §4.1, §13) · Hugeicons Stroke Roun
   | 11 | Price Updated | Fixed tender price changed (informational) | toast/info row |
   | 12 | Transaction Completed | Cart confirmed (informational) | toast/info row |
   | 13 | Waste/Loss Alert | Waste action recorded (informational) | toast/info row |
-- **Nav:** in: S08 badge. out: per-alert target (cart, inventory, receivables, settings…). All text in selected language (§14).
+- **Nav:** in: S08 badge. out: per-alert target (cart, inventory, receivables, settings…). All text in plain English (§14, §5.4).
 - **States:** Empty ("all clear"); local OS notifications **optional** (§14 — scope flag G-8).
 
 ---
 
 ## 4. Bottom-Sheet Flow Registry (BS-01–BS-22)
 
-Each flow carries its own §18 state chain and validation. Shared styling: frosted glass, 24-px top radius (§5.1), Hugeicons, Telugu-first.
+Each flow carries its own §18 state chain and validation. Shared styling: frosted glass, 24-px top radius (§5.1), Hugeicons, plain-English copy (§5.4).
 
 | ID | Flow | SRS | Contents / steps & states |
 |----|------|-----|---------------------------|
@@ -558,7 +553,7 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 | BS-09 | Record Payment (with Deductions) | §7.5.3, §17 "Record payment" | Fields: **Amount received** · Reference (UTR/cheque/DD/voucher no.) · note · date. **Deduction lines** (add one or more): reason (editable set — Quality · Damage · Quantity/short weight · Return · Other, S39) · amount · optional link to transaction/adjustment. Net: dues reduce by Received + Deductions (formula 14). **Applied oldest pending period first (FIFO) w/ manual targeting override.** Overpay/downward-revision → credit balance ("Advance from Institution A: ₹X", auto-applied FIFO next bill) with warning: *"₹15,000 is already collected against this bill — revised total is ₹13,000. ₹2,000 becomes credit balance."* Validation: "Deductions plus received cannot exceed the pending amount." (§15.1 — see Gap G-1 tension with overpay credit balance). |
 | BS-10 | Prepare Period Bill | §7.5.2, §17 | Aggregate confirmed supplies within a tender's period (auto-stops at period end; **supports partial-period billing**); items summary, amounts, issue date, optional notes; display `Supply ₹X − Deductions ₹Y = Net to collect ₹Z`; confirm issue → **Bill record** ("Bill Issued"). Generated **only on demand** from the chip/S22. |
 | BS-11 | Record Post-Lock Adjustment | §7.5.7, §2.10, §17 "Add post-lock adjustment", §10 | institution · linked transaction/tender/period · type (**Rejected/Short quantity · Accepted-weight difference · Quality deduction · Other**) · quantity and/or amount · reason (editable set) · date = **discovery date** · **optional photo evidence** (weight-slip/delivery/transport — off by default, §10/§15.2). Effects preview: rejected/short qty → **inventory lot** "Institution X — Post-Supply Rejected" (then normal Use/Sell/Waste); money → **dues deduction** + **P&L Deductions line** on that date (formula 15). Appears linked in S29 ("Original + Adjustments") and S22. |
-| BS-12 | Memo / Bill Generate & Share | §7.5.5, §17 | **Only when the institution asks** (from Transaction Detail S29 or profile S19/S22). Choose type: **Transaction memo** (institution, supply date, memo number, items, quantity, **frozen tender rates**, amount per line, total, signature space) or **Period bill** (Supply − Deductions = Net to collect). Preview in Telugu (§5.4); **every generation timestamped**; numbering sequential per institution (A-2026-10-001; revision suffixes per §6.8); share as **screenshot/image or PDF**; optional **"Shared ✓"** marker; shared docs later outdated by revision/adjustment → warning: *"This shared bill is outdated — regenerate and share the updated version."* (§7.5.5). |
+| BS-12 | Memo / Bill Generate & Share | §7.5.5, §17 | **Only when the institution asks** (from Transaction Detail S29 or profile S19/S22). Choose type: **Transaction memo** (institution, supply date, memo number, items, quantity, **frozen tender rates**, amount per line, total, signature space) or **Period bill** (Supply − Deductions = Net to collect). On-screen preview (§5.4); **every generation timestamped**; numbering sequential per institution (A-2026-10-001; revision suffixes per §6.8); share as **screenshot/image or PDF**; optional **"Shared ✓"** marker; shared docs later outdated by revision/adjustment → warning: *"This shared bill is outdated — regenerate and share the updated version."* (§7.5.5). |
 | BS-13 | Record Seller Settlement | §9.1, §17 "Settle seller payment" | Per seller: open on-credit lines; payment amount + reference; **FIFO** across lines; confirm. **Cash-only** — never P&L (§9.1, §16.9). Updates S27 statuses (Open → Partly settled → Settled). |
 | BS-14 | Tender Picker | §6.5, §7.2, §15.1 | Per allocation row when multiple active tenders are ambiguous: choose tender with the **default preselected** (period covers today AND holds a price; latest-start tiebreak). Error: "Choose the tender for this supply." Each allocation stores its tender in the frozen snapshot (§2.4). |
 | BS-15 | Missing Tender Price | §6.5, §15.1, §4.3 | "No fixed tender price found" → **Add Price to Institution** (asks **which tender** when multiple, §7.2 — shares the S21/S20 price form) or **Use Custom Rate** (this allocation only). Never borrow another institution's rate. Error text: "No fixed tender price is available for this institution." (§15.1) |
@@ -568,7 +563,7 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 | BS-19 | Export Data | §13, §2.11.5, §17 | Choose **CSV/JSON** → generate → share/save. Columns map directly to §2.11 ledger rows (purchase line · allocation · expense · payment · settlement · waste · sale · adjustment) — no re-keying later (§21 dependency). |
 | BS-20 | Import Data | §13, §17 | Pick file → **validation (+ schema/version)** → confirm → progress → feedback. |
 | BS-21 | Image Picker (item images + photo evidence) | §17 ("Image mgmt"), §5.3, §10, §15.2 (mechanism implied — Gap G-4) | One shared pick/attach overlay used by **two features**: ① **item canonical image** — set/replace in S11 (Add/Edit Item) and S35 (Item Management) — one image per item, canvas never modified (§5.3); ② **photo evidence** — attach a weight-slip / delivery / transport photo to a **confirmed transaction** (S29) or a **post-lock adjustment** (BS-11), optional and off by default (§10/§15.2). Options: camera capture · gallery/file pick · remove/none; thumbnail preview before save; reuses the same Hugeicons slot everywhere (§5.5). Nothing numeric — never affects any formula. |
-| BS-22 | Report Export / Share | §12, §17 ("detail · export") | From S33 report detail: choose output **Share · Print · PDF · CSV** (structured summary rendered in the selected language §5.4, ₹ grouped §2.7); generation is read-only — no report editing, no report builder. Success feedback per §18. |
+| BS-22 | Report Export / Share | §12, §17 ("detail · export") | From S33 report detail: choose output **Share · Print · PDF · CSV** (structured summary rendered in English §5.4, ₹ grouped §2.7); generation is read-only — no report editing, no report builder. Success feedback per §18. |
 
 ---
 
@@ -589,7 +584,7 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 | DL-09 | Continue old cart? — "Continue yesterday's cart?" or "Start fresh" | §15.2 (Cart across days) | S12 open with stale date | Old cart must be confirmed or explicitly discarded first. |
 | DL-10 | **Discard cart** confirmation (implied by §15.2 "explicitly discarded"; **absent from §17 modal list — flagged Gap G-3**) | §15.2 | DL-09 "Start fresh" path | Destructive-ish confirm; releases reservations (§8.4). |
 | DL-11 | Inventory quick-action menu — Use in Supply · Sell · Mark Waste (§17 "Inventory action") | §8.2, §8.1 | S25 / S24 card | Routes to BS-05/06/07. |
-| DL-12 | Generic selector sheets (reusable pick-lists): Institution · Item · Unit · Expense category · Loss reason · Rejection reason · Language | §17 modal row; editable sets §13 | expense entry (type), assignment, reason pickers, language, unit | All selections come from editable dropdown sets — **no free-text reasons** (§2.11.2, §15.2). |
+| DL-12 | Generic selector sheets (reusable pick-lists): Institution · Item · Unit · Expense category · Loss reason · Rejection reason | §17 modal row; editable sets §13 | expense entry (type), assignment, reason pickers, unit | All selections come from editable dropdown sets — **no free-text reasons** (§2.11.2, §15.2). |
 | DL-13 | **Revision picker (R1/R2/…)** | §17 ("revision selector (R1/R2…)"), §2.8.5, §6.8 | S29 Revision row (transactions with revisions after re-confirms) | Selector overlay listing all stored revision snapshots with per-revision reference (TRX-20261020-R2…); dues & memos always follow the **latest** revision (§2.8.5); view-only switch — switching revisions never edits history. |
 | DL-14 | **Attachment viewer (full-screen photo preview)** | §10 (photos "visible in Transaction Detail"), §15.2 | S29 photo thumbnails (also entered from BS-21 attach preview) | Full-screen overlay for transaction/adjustment photo evidence (weight-slip/delivery/transport) with capture/attach date — "available when disputes arise at collection time" (§10); back/close honored (§18). Implied visual affordance of §10's documentation; deletion of a photo follows the §5.1 gentle-confirm pattern. |
 
@@ -601,26 +596,26 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 |----|-----------|-----|
 | G1 | **Bottom navigation** — floating frosted glass, 5 destinations: Home · Vegetables · Cart (**badge = item count**) · Inventory · More. Tablet/desktop: **sidebar with the same structure** (§3.2). | §3.1, §5.1, §17 |
 | G2 | **Floating cart indicator** — glass; "Cart · 3 Items · Investment ₹34,000"; Hugeicons cart icon paired with text (never emoji); on Home and other screens. **Variants (§2.8.2, §6.1):** Active Cart ("Open · n items") · Completed-Day Home state ("Completed today — Edit Today's Cart" while window open / "Completed & Locked") · **Correction chip** "Correcting TRX 20-Oct (R2)" persistent beside any active cart. | §3.1, §5.1, §5.5, §2.8.2 |
-| G3 | **Numeric keypad** — mandatory for **all** money & quantity input (not the OS keyboard); Telugu-first labels; up to 2 decimals (§2.7). | §5.1, §5.2 |
+| G3 | **Numeric keypad** — mandatory for **all** money & quantity input (not the OS keyboard); plain-English labels (§5.4); up to 2 decimals (§2.7). | §5.1, §5.2 |
 | G4 | **Toast/Snackbars** (§15.4 exact set): Added to Cart ✓ · Institution Created ✓ · Tender Price Updated ✓ · Inventory Updated ✓ · Cart Completed ✓ — short, unobtrusive, no excessive animation. | §15.4 |
 | G5 | **Global states applied to every screen** (§17 last row): Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast/Snackbar · Bottom sheet · Modal · Full-screen error recovery. Enforced by §18: **no dead ends; every action gets all states.** | §17, §18 |
 | G6 | **Financial visualization kit** — large numbers primary (profit green / loss red everywhere); simple charts only (Daily P/L, Institution, Vegetable, Monthly trend); allocation % progress bars. | §5.2 |
 | G7 | **Calendar / date-range pickers** — filters (§10), custom range (§10/§11/§12), tender periods (S20), payment dates (BS-09/13), adjustment dates (BS-11). | §10–§12 |
 | G8 | **Offline & sync posture** — fully offline (local-first); sync/backup optional and non-blocking; offline indicator + export/backup access when back online. | §2.8.3, §15.2 |
 | G9 | **Date cards (Calendar/History browsing)** — clean rounded date cards everywhere history is browsed (S28 & future list contexts). | §5.1 ("Calendar/History browsing renders as clean rounded date cards") |
-| G10 | **Icon system** — Hugeicons only, **Stroke Rounded** family, one pinned version; color/weight carries state (never style-switch); icons always paired with Telugu-first text; 24 px nav/primary, 20 px inline, 4-px grid, `currentColor`; one icon per §14 alert type; **§17 map assigns every slot**. | §5.5, §17, §19 |
+| G10 | **Icon system** — Hugeicons only, **Stroke Rounded** family, one pinned version; color/weight carries state (never style-switch); icons always paired with plain-English text (§5.4); 24 px nav/primary, 20 px inline, 4-px grid, `currentColor`; one icon per §14 alert type; **§17 map assigns every slot**. | §5.5, §17, §19 |
 
 ---
 
 ## 7. End-to-End Workflows (screen-step sequences)
 
 ### WF-01 · First-Time Setup (once) — §4.1
-`S01 Splash → S02 Welcome → S03 Language (Telugu default) → S04 Business Profile (₹, kg) → S05 Initial Items (seeded + custom) → S06 Initial Institutions (+ tenders + fixed prices) → S07 Setup Complete → S08 Home (Empty)`
+`S01 Splash → S02 Welcome → S04 Business Profile (₹, kg) → S05 Initial Items (seeded + custom) → S06 Initial Institutions (+ tenders + fixed prices) → S07 Setup Complete → S08 Home (Empty)` (S03 retired in SRS v2.7 — English-only, no language step)
 
 ### WF-02 · Canonical Daily Supply Flow — §4.2 (the only workflow diagram in the SRS)
 ```
 S08 Home (Start Today's Supply)
-→ S09 Item list (search EN+Telugu, filters)
+→ S09 Item list (search, filters)
 → S10 Item Detail (BS-01 if stock exists)
 → S12 Cart (repeat items; BS-16 edit anytime; DL-01 remove)
 → S12 Continue → Allocate
@@ -684,7 +679,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 |--------------------------|------------|
 | Splash | S01 |
 | Welcome / Intro | S02 |
-| First-Time Setup | S04 (+S03 language step per §4.1 flow) |
+| First-Time Setup | S04 (§4.1 flow; Language step removed in v2.7) |
 | Initial Items | S05 |
 | Initial Institutions | S06 |
 | Setup Complete | S07 |
@@ -758,14 +753,14 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | 5-tab bottom nav + More contents (incl. Payments & Dues, Seller Payables) | G1 (S08/S09/S12/S24 + More hub) |
 | Persistent cart indicator | G2 |
 | Tablet/desktop sidebar; same logic | §3.2 applied across all screens (responsive variants documented globally) |
-| First-time setup flow | S01–S07 (WF-01) |
+| First-time setup flow | S01/S02 + S04–S07 (WF-01) |
 | Daily supply flow + supply irregularity | WF-02 + S12/S30 (carts only on supply days; dues/aging/alerts run on quiet days §4.2) |
 | Decision points never automated | §4.3 mapped: BS-01 (inventory vs buy), BS-03 (remaining), BS-04 (rejected), BS-15 (missing price), DL-06 (one confirm) |
 | Soft-modern glass, full-width rows, rounding, shadows | §5.1 (global constraint header) |
 | Component library incl. keypads, sheets, toasts | §5.1 + G3/G4 |
 | Financial visualization rules | §5.2 + G6 |
 | Image usage (hero 4:3/1:1, no marketplace styling) | §5.3 on S09/S10/S25; canonical image mgmt S11/S35 |
-| Telugu-first + simple-language rule | S03/S37; all strings translated; memos inherit language BS-12 |
+| English-only + simple-language rule (§5.4) | all screens (plain-English strings; no language switcher); memos/bills in English BS-12 |
 | Hugeicons single system (Stroke Rounded, icon+text, per-slot map) | G10 + §17 map assignment |
 
 ### 8.4 §6–§10 screens — see per-screen SRS refs in §3 (each screen cites its section) and §8.1 mapping above.
@@ -782,7 +777,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | 14 report types + detail + export, no builder | §12 | S32/S33 (+G7 picker) |
 | Report inventory values chain | §12/§8.8 | S33 Inventory, Expense, P/L, etc. |
 
-### 8.6 §13 settings groups → S34 hub: Institutions S17 · Items S35 · Business S36 · App S37 (language · expense categories S38 · reason editor S39 · overdue alert days · backup interval) · Data S40 · About S41. Deactivation safeties DL-04/DL-05. §2.11 export mirror BS-19.
+### 8.6 §13 settings groups → S34 hub: Institutions S17 · Items S35 · Business S36 · App S37 (expense categories S38 · reason editor S39 · overdue alert days · backup interval; no Language row — English-only §5.4) · Data S40 · About S41. Deactivation safeties DL-04/DL-05. §2.11 export mirror BS-19.
 
 ### 8.7 §14 alerts — mapped 13/13 in S42 table (S08 badge hosts the same list).
 
@@ -843,7 +838,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | One active cart; confirm once; expenses per §2.5 | S12/S15/DL-06 · BS-08 |
 | Mobile-first; desktop sidebar | §3/§3.2 responsive (G1/G8) |
 | Fast minimal-typing UX: visual selection, auto rates, auto inventory detection, instant totals, bag entry, last-rate prefill | S09/S10/BS-01/BS-16 |
-| Telugu default + English secondary incl. memos | S03/S37/BS-12 |
+| English-only UI incl. memos (§5.4) | all screens · BS-12 |
 | Hugeicons single system; icon+text; alert icons | G10 |
 | Memos only on demand; screenshot/PDF; Shared ✓; outdated re-share | BS-12 |
 | Dues reconcile (formula 14=0 ⇒ Fully Paid); deductions hit P&L on their date | BS-09 · BS-11 · S22 |
@@ -855,7 +850,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | Payables (flag, aging, cash-only settlements) | S10/S27/BS-13 |
 | Reservations deducted; released on discard/revision; deplete at Confirm | BS-05/S12/S24 |
 | Tender picker per row + default rule; Add Price asks which tender | BS-14/BS-15 |
-| Search EN+Telugu; photo evidence; version-tagged backups; Spoilage report; Contract-wise P&L | S09 · S29 · BS-17/18 · S33 · S31 |
+| Search; photo evidence; version-tagged backups; Spoilage report; Contract-wise P&L | S09 · S29 · BS-17/18 · S33 · S31 |
 | §2.11 standard honored; export mirrors ledger | S10/S13/BS-* · BS-19 |
 | Standalone entries share correction window; post-window compensating entries | S30 |
 | Deactivation keeps receivables/P&L; blocks new allocations | DL-04/S13 |
@@ -876,7 +871,7 @@ This matrix verifies, screen by screen, that every universal constraint from §3
 | U1 | Glass app bar with screen title (frosted surface + solid fallback) | §5.1, G6 | Always (except S01 splash) |
 | U2 | Persistent navigation — bottom nav on mobile, sidebar on desktop, same 5 destinations | §3.1, §3.2, G1 | Always from S08 (post-setup shell) |
 | U3 | Global states row (Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast · Sheet · Modal · Full-screen recovery) | §17 global row, G5 | Always |
-| U4 | Hugeicons Stroke Rounded only; every icon paired with text; Telugu-first labels with English everywhere | §5.5, §5.4, G10 | Always |
+| U4 | Hugeicons Stroke Rounded only; every icon paired with text; plain-English labels everywhere (§5.4) | §5.5, §5.4, G10 | Always |
 | U5 | Offline-first: local-first operation, non-blocking sync indicator, no blocking errors offline | §2.8.3, §15.2, G8 | Always |
 | U6 | §18 state chain per action (Normal→Edit→Cancel→Error→Empty→Success→Confirmation→Back); back always resolves to a parent, never a dead end | §18 | Always |
 | U7 | Scope guard: contractor-only, no marketplace/ERP idioms, no invented features | §1.4, §19 | Always |
@@ -889,28 +884,26 @@ This matrix verifies, screen by screen, that every universal constraint from §3
 
 Symbols: ● = present/enforced · ◐ = conditional (see note) · ○ = not applicable by design.
 
-### 9.2 Always-on elements (U1–U7) — 42 screens
+### 9.2 Always-on elements (U1–U7) — 41 screens
 
 | Screen | U1 Bar | U2 Nav | U3 States | U4 Icons/Lang | U5 Offline | U6 §18 | U7 Scope |
 |--------|--------|--------|-----------|----------------|------------|--------|----------|
 | S01 Splash | ○ | ○ | ● | ● | ● | ● | ● |
 | S02 Welcome/Intro | ◐ | ○ | ● | ● | ● | ● | ● |
-| S03 Language | ● | ○ | ● | ● | ● | ● | ● |
 | S04 Business Profile | ● | ○ | ● | ● | ● | ● | ● |
 | S05 Initial Items | ● | ○ | ● | ● | ● | ● | ● |
 | S06 Initial Institutions | ● | ○ | ● | ● | ● | ● | ● |
 | S07 Setup Complete | ● | ○ | ● | ● | ● | ● | ● |
 | S08–S42 (all daily-app screens) | ● | ● | ● | ● | ● | ● | ● |
 
-Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (◐). Setup (S03–S07) keeps the glass step-header with back; the G1 shell enters at S08. Bottom sheets and dialogs render atop the underlying screen, which keeps its bar/nav (§9.4).
+Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (◐). Setup (S04–S07) keeps the glass step-header with back; the G1 shell enters at S08. Bottom sheets and dialogs render atop the underlying screen, which keeps its bar/nav (§9.4).
 
-### 9.3 Conditional elements (U8–U13) — 42 screens
+### 9.3 Conditional elements (U8–U13) — 41 screens
 
 | Screen | U8 Chip | U9 Keypad | U10 Toast | U11 ₹ | U12 G/R | U13 Primary | Note |
 |--------|---------|-----------|-----------|-------|---------|--------------|------|
 | S01 | ○ | ○ | ○ | ○ | ○ | ○ | pre-shell |
 | S02 | ○ | ○ | ○ | ○ | ○ | ◐ Skip | |
-| S03 | ○ | ○ | ○ | ○ | ○ | ● Continue | |
 | S04 | ○ | ○ | ○ | ○ | ○ | ● Continue | |
 | S05 | ○ | ● inline | ◐ | ○ | ○ | ● | custom-item form numeric fields |
 | S06 | ○ | ● | ◐ | ● | ○ | ● | price entry keypad; institution-add generic success feedback |
@@ -971,7 +964,7 @@ Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (
 | G-2 | **Three alert thresholds lack an explicit Settings home:** Long-Pending Dues contractor-set aging threshold (§7.5.6), Tender Ending Soon N days (§14), Seller Payable alert N days (§9.1). §13's groups don't name them. | §7.5.6/§14/§9.1 vs §13 | S37/S42 | Add them to Settings → App (S37) or per-institution tender defaults (S20). |
 | G-3 | **Discard-cart confirmation** implied by §15.2 ("old cart must be confirmed or explicitly discarded first") but **missing from §17's modal list**. Included here as DL-10 to keep flows complete. | §15.2 vs §17 | DL-10 | Confirm exclusion/intent; add to §17's modal row on next spec revision. |
 | G-4 | **Custom-item image mechanism unspecified** (§17 says "Image mgmt" — capture/library/bundled set not stated). | §17, §5.3 | S11 · BS-21 | Decide: bundled seed images for standard items + camera/gallery picker (BS-21 options defined, mechanism decision pending). |
-| G-5 | **Welcome/Intro slide contents unspecified** ("Slides, Skip"). | §17, §4.1 | S02 | Confirm copy (Telugu-first; 2–3 slides). |
+| G-5 | **Welcome/Intro slide contents unspecified** ("Slides, Skip"). | §17, §4.1 | S02 | Confirm copy (plain-English, §5.4; 2–3 slides). |
 | G-6 | **Seed catalog completeness:** §6.2 names categories + example items; the full seeded item list (and per-item shelf-life defaults beyond §16.1's examples) is not enumerated. | §6.2/§16.1 | S05 | Confirm the seed dataset before build. |
 | G-7 | **Attention Center surface type** — §17 module row implies a screen; §14 says "shown on Home (badged) and optionally local notifications." | §17 vs §14 | S42 | Confirm badge-expands-to-list treatment (assumed here) and whether OS-local notifications are v1. |
 | G-8 | **Local notifications "optionally"** (§14) — v1 scope unclear (permission prompts, scheduling). | §14 | S42/G | Confirm deferral. |
@@ -983,9 +976,9 @@ Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (
 ## 11. Summary Report
 
 - **Feature modules:** 17 — Onboarding & Setup · Home · Items & Purchase Entry · Daily Cart · Allocation · Remaining & Rejected (flows-only) · Review & Finalization · Institutions & Tenders · Payments & Receivables · Inventory · Expenses · Seller Payables · History & Other Day Entries · P&L · Reports · Settings & Data Mgmt · Attention Center.
-- **Actual screen count:** **42 full screens** (S01–S42), plus 22 bottom-sheet flows (BS-01–BS-22), 14 dialogs (DL-01–DL-14), and 10 global components (G1–G10). Screen-level state variants (V) are documented inline per screen.
+- **Actual screen count:** **41 full screens** (S01–S42; S03 retired in SRS v2.7 — English-only), plus 22 bottom-sheet flows (BS-01–BS-22), 14 dialogs (DL-01–DL-14), and 10 global components (G1–G10). Screen-level state variants (V) are documented inline per screen.
 - **Overlay definitions:** **36** — covers every item of §17's "Modals / Sheets" row (21) plus 15 overlays the SRS body mandates (inventory choice · add-to-inventory · remaining · rejected · period bill · memo/bill generator · missing price · backup · export · import · discard-cart · image picker/photo evidence · report export/share · revision picker · attachment viewer).
 - **Universal-element coverage:** §9 maps every screen against 13 universal elements (U1–U13: 7 always-on + 6 conditional); BS/DL overlays inherit their parent screen's elements and carry their own keypad/₹/profit-loss constraints where relevant (§9.4).
 - **Traceability:** §17 map covered **40/40** rows (+2 meta rows); §14 alerts **13/13**; §15.1 messages **12/12**; §12 reports **14/14**; §11 tabs **7/7**; §13 groups **6/6**; §16 canonical figures mapped to their display screens.
 - **Unresolved gaps:** 11 logged (G-0–G-10) — the dominant ones: missing source prompt file (G-0), overpayment-vs-validation tension (G-1), alert-threshold settings placement (G-2), discard-cart dialog not in §17's list (G-3), image mechanism (G-4), and v1-scope items (G-7/G-8/G-10).
-- **Original files untouched** — this document is additive, spec-only; **no app code generated** (per AGENTS.md).
+- **No app code generated** (per AGENTS.md) — spec-only repo. Doc updated in place (v1.1) to mirror SRS v2.7's English-only change; all §16 canonical figures unchanged.
