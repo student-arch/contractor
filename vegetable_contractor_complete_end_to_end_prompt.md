@@ -671,7 +671,7 @@ Creating a new cart for an item with inventory:
 
 - Show **"Existing Inventory Available: 50 kg"** → options **Use Inventory / Purchase New** (both).
 - Source breakdown displayed clearly:
-  - Required: 200 kg → From Inventory: 50 kg (cost ₹1,500, already paid) + New Purchase: 150 kg @ today's rate → Total: 200 kg.
+  - Required: 200 kg → From Inventory: 50 kg (cost ₹1,500, already invested — no new money today, even if bought on credit) + New Purchase: 150 kg @ today's rate → Total: 200 kg.
 - The 50 kg creates **no duplicate investment**; its original cost is recognized once as Inventory Used Cost (formula 6).
 
 ### Reservations
@@ -746,13 +746,13 @@ Mandi sellers commonly extend credit ("khata") — settled days later. This mirr
 
 - **Filters:** Today · Yesterday · Last 7 Days · This Month · Previous Month · Custom Date Range — period totals shown for selection.
 - **Search** across transactions (item names, institutions, dates).
-- **Transaction Detail** (frozen rates): item list, institution allocations with tender rates as used, inventory movements, expenses, final result. Sub-views: item detail, institution detail, expense detail, inventory detail, P/L detail. While the correction window (§2.8) is open: **Edit Today's Cart** action; afterwards a **Locked** badge, a **revision selector (R1/R2/…)**, and any **linked post-lock adjustments** (§7.5.7).
+- **Transaction Detail** (frozen rates): item list, institution allocations with tender rates as used, inventory movements, expenses, final result. Sub-views: item detail, institution detail, expense detail, inventory detail, P/L detail. While the correction window (§2.8) is open: **Re-open & Correct** action — this is where corrections of any within-window transaction start (on Home the same entry point appears as "Edit Today's Cart" for today's own transaction only, §6.1); afterwards a **Locked** badge, a **revision selector (R1/R2/…)**, and any **linked post-lock adjustments** (§7.5.7).
 - **Memos & Bills** — generate on demand per tender/institution from Transaction Detail (§7.5.5).
 - **Photos (optional, off by default)** — attach a weight-slip / delivery / transport photo to a transaction or post-lock adjustment; visible in Transaction Detail and available when disputes arise at collection time (§7.5.5).
 
 ## 10.1 Other Day Entries (Non-Cart Financial Events)
 
-Inventory sales (§8.5), waste (§8.6), post-lock adjustments (§7.5.7), and seller settlements (§9.1) can happen on days with **no cart**. They become lightweight, **date-anchored entries**:
+Inventory sales (§8.5), waste (§8.6), post-lock adjustments (§7.5.7), and seller settlements (§9.1) can happen **on any day** — standalone on a no-cart day, or alongside a cart. They become lightweight, **date-anchored entries**:
 
 - Each entry carries its own date → renders in **History** as a compact row with a type badge (**Sale · Waste · Adjustment · Settlement**) linking to its detail view — never lost just because no cart exists.
 - They feed **daily/monthly P&L aggregates** exactly like cart effects:
@@ -760,7 +760,7 @@ Inventory sales (§8.5), waste (§8.6), post-lock adjustments (§7.5.7), and sel
   - Waste → loss (formula 12).
   - Adjustment → inventory in and/or a Deductions line (formula 15).
   - Payable settlement → cash-out only (§9.1 — never P&L; the cost was recognized at purchase).
-- A **waste-only day** renders as a Loss day (red −₹X); a **sale-only day** follows margin rules (blank margin when there is no cost baseline — §15.2). The Home TODAY cards aggregate cart + other entries for the current date.
+- A **waste-only day** renders as a Loss day (red −₹X — no revenue, so margin stays blank per formula 10/§15.2); a **sale-only day** follows normal margin rules (negative margin shows as a red Loss display, §15.2). The Home TODAY cards aggregate cart + other entries for the current date.
 
 ---
 
@@ -770,7 +770,7 @@ Inventory sales (§8.5), waste (§8.6), post-lock adjustments (§7.5.7), and sel
 - **Tabs:** Overall · Daily · Weekly · Institution-wise · **Contract-wise (Tender)** · Vegetable-wise · Monthly (+ custom period).
 - **Institution-wise:** per institution — total supply qty, revenue, allocated cost, assigned expenses, profit/loss, margin; best & worst performer highlighted.
 - **Contract-wise (per tender, per institution):** each tender agreement (§7.2) gets its own P&L line — supply quantity, supply revenue at the tender's fixed rates, allocated cost, deductions from that contract's collections, **net profit/loss and margin for the contract as a whole** — so the contractor sees for every single contract exactly how much he earned or lost, and which contracts to renegotiate, reprice, or drop. Deductions and adjustments (§7.5.7) are included same as Institution-wise (Effective Revenue).
-- **Vegetable-wise:** per item — total quantity, total investment, total revenue, waste loss, overall profit/loss; e.g., **Tomato:** 5,000 kg · ₹1,50,000 invested · ₹1,85,000 revenue · ₹5,000 expenses · **+₹30,000**; supplied to A, B, C. Best & worst performer highlighted.
+- **Vegetable-wise:** per item — total quantity, total investment, total revenue, assigned expenses (§2.5 — assigned only, never auto-distributed), waste loss, overall profit/loss; e.g., **Tomato:** 5,000 kg · ₹1,50,000 invested · ₹1,85,000 revenue · ₹5,000 assigned expenses · **+₹30,000**; supplied to A, B, C. Best & worst performer highlighted.
 - **Breakdowns:** revenue breakdown, investment breakdown, expense impact, loss analysis.
 - **Profit is transaction-based** (recognized on confirm, §2.9) — this dashboard never mixes in payment collections; cash belongs to Receivables (§7.5).
 - **Built for years of data:** aggregates (overall/daily/monthly/per institution/contract/item) are **precomputed and incrementally updated on writes** (§2.11) — dashboards open instantly; deep histories paginate rather than reload everything.
@@ -933,6 +933,8 @@ Short, unobtrusive toasts: **Added to Cart ✓ · Institution Created ✓ · Ten
 | Potato | 150 kg (37.5%) × ₹35 = **₹5,250** | 150 kg (37.5%) × ₹32 = **₹4,800** | 100 kg (25%) × ₹36 = **₹3,600** | 0 kg |
 | Onion | 100 kg (33.3%) × ₹38 = **₹3,800** | 100 kg (33.3%) × ₹40 = **₹4,000** | 100 kg (33.3%) × ₹35 = **₹3,500** | 0 kg |
 
+*Note on this table: Onion's three 33.3% displays sum to 99.9% — display rounding only; the stored allocations are full-precision and total exactly 100% (§2.7).*
+
 - Revenue: A **₹17,050** · B **₹15,550** · C **₹10,900** → **Total ₹43,500**
 - Allocated cost (formula 4): A ₹12,750 · B ₹11,250 · C ₹8,500 → **₹32,500**
 - Institution profit (no assigned expenses): A **+₹4,300** · B **+₹4,300** · C **+₹2,400**
@@ -980,13 +982,15 @@ Institution A receives 200 kg Tomato → rejects **30 kg** → prompt: **"What s
 - **Move to Inventory** → lot +30 kg @ original ₹30 = ₹900 value *(this branch is the lot sold on 22 Oct — §16.9)*.
 - **Mark as Loss/Waste** → reason entered → **Loss ₹900** → contributes to daily loss and overall loss.
 
-## 16.5 Inventory Sale
+## 16.5 Inventory Sale (Standalone Example)
 
 Sell the 50 kg Tomato lot @ ₹35/kg → **Revenue ₹1,750**, Cost (50 × ₹30) ₹1,500, **Profit ₹250**, date recorded. Lot becomes Sold.
 
-## 16.6 Inventory Waste
+> Standalone exercise — not an extra event in the §16.2–16.3 chain (which consumed the 50 kg lot on Day 2). Its figures are exactly the flow §8.5 shows; §16.9's 22-Oct sale is a separate standalone row using §16.4's branch lot.
 
-Mark 20 kg @ ₹30 as **Spoiled** → **Loss ₹600** (formula 12) → Daily Loss and Overall Loss updated.
+## 16.6 Inventory Waste (Standalone Example)
+
+Mark 20 kg @ ₹30 as **Spoiled** → **Loss ₹600** (formula 12) → Daily Loss and Overall Loss updated. The contractor's deliberate choice — never automatic (§2.6).
 
 ## 16.7 Overall Business Illustration (Lifetime Figures)
 
@@ -1012,7 +1016,6 @@ Institution A's tender period: **1–31 October 2026** (payment terms: paid afte
 | 20 Dec | Residual pending, aging 45 days (since the 5 Nov bill — §7.5.1) | **₹5,550 pending** |
 
 - Overall pending split as of 20 Dec (§6.1, §7.5.6): **Pending ₹36,500 = Billed pending ₹5,550 + Unbilled (accrued) ₹30,950** — accrued = B ₹20,050 (Day 1 ₹15,550 + Day 2 ₹4,500) + C ₹10,900 (§16.2–16.3).
-
 - P&L recognized the ₹21,050 as revenue across 20–21 Oct. The 20 Dec deduction surfaces as a **−₹500 "Deductions" line in P&L dated 20 Dec** (formula 15) — the institution's effective revenue reads ₹20,550 without rewriting the supply days. The ₹15,000 collection only becomes cash, never profit again (§2.9). Over the month, Effective Revenue = Supply Revenue − Deductions keeps aggregate totals truthful.
 - If the contractor had instead received ₹5,550 on 20 Dec and the rest later, the bill stays **Partially Paid → pending ₹15,000**.
 - Memos/bills are generated **only when the institution asks** (his workflow — never daily-shared). Shared ✓ markers trigger the outdated-bill warning if amounts later change (§7.5.5). At payment time with deductions, the bill shows: Supply ₹21,050 − Deductions ₹500 = **Net to collect ₹20,550** (§7.5.3).
@@ -1025,7 +1028,7 @@ Institution A's tender period: **1–31 October 2026** (payment terms: paid afte
 | Date | Event | P&L effect |
 |------|-------|------------|
 | 22 Oct (no cart) | A buyer takes the 30 kg rejected tomato lot (§16.4's Move-to-Inventory branch) @ ₹28 → Other Day Entry **Sale**: Revenue ₹840, Cost 30 × ₹30 = ₹900, lot 30 → 0 | **−₹60** for the day (Sale row) |
-| 23 Oct (no cart) | 15 kg of an old onion lot (leftover from a prior period) marked **Spoiled** → Waste entry: 15 × ₹30 | **−₹450** loss day (Waste row) |
+| 23 Oct (no cart) | 15 kg of an old onion lot (leftover from a prior period, original rate ₹30) marked **Spoiled** → Waste entry: 15 × ₹30 | **−₹450** loss day (Waste row) |
 | 24 Oct (no cart) | Settle the mandi seller — the on-credit tomato ₹15,000 from 20 Oct | **₹0 in P&L** — cash-out only (the ₹15,000 was already inside 20 Oct's Investment; §9.1) |
 
 All three render as compact badge-rows in History (Sale/Waste/Settlement), anchor to their own dates in daily/monthly aggregates, and never disturb cart-transaction history — no ₹840, ₹450, or ₹15,000 ghost totals appear in the 20–21 Oct supply days.
@@ -1072,7 +1075,7 @@ All three render as compact badge-rows in History (Sale/Waste/Settlement), ancho
 | Completion | Cart Completed ✓ | Final result · transaction reference (R-suffix after correction-window revision) · View Details · View History · Back to Home |
 | History | History Dashboard | Date cards · filters (Today/Yesterday/7d/This/Prev Month/Custom) · search · empty · **other-entry rows (Sale/Waste/Adjustment/Settlement badges)** |
 | | Transaction Detail | Item / institution / expense / inventory / P-L detail views (frozen rates) · correction-window Edit / Locked badge (§2.8) · **revision selector (R1/R2…)** · **linked adjustments (§7.5.7)** · **memo/bill generation on demand (§7.5.5)** · optional **photo attachments** (§10) |
-| | Other Day Entries | Sale · waste · adjustment · settlement rows on no-cart days · detail views · daily/monthly P&L aggregation (§10.1) |
+| | Other Day Entries | Sale · waste · adjustment · settlement rows (date-anchored — on no-cart days and alongside carts) · detail views · daily/monthly P&L aggregation (§10.1) |
 | Payables | Seller Payables (More) | Seller rows: owed / aging / status (Open · Partly settled · Settled) · purchase flag paid/credit · settlements FIFO · due-date alerts (§9.1) |
 | Profit & Loss | P/L Dashboard | Overall · Daily · Weekly · Monthly · Custom · Institution-wise · **Contract-wise (Tender)** · Vegetable-wise · expense impact · revenue/investment breakdown · margin · loss analysis · best/worst performer |
 | Reports | Reports Dashboard | Daily/Weekly/Monthly/Institution/**Contract**/Vegetable/Inventory/Expense/P-L/Custom · **Payment Dues** · **Cash-vs-Accrued** · **Payables** · **Spoilage by Item** · detail · export |
