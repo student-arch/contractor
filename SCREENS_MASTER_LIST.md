@@ -1,8 +1,8 @@
 # SCREENS MASTER LIST — Vegetable Contractor Management App
 
-> **v1.1 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.7)** — the single source of truth.
+> **v1.2 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.8)** — the single source of truth.
 >
-> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (at generation time the repo held only the SRS and `AGENTS.md`; this file itself is the generated deliverable). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is therefore built strictly from the SRS v2.7 (v1.0 was derived from SRS v2.6; updated to v2.7 for the English-only change — S03 Language Selection retired). The SRS was not modified to produce it. All figures quoted below derive from the §16 canonical dataset.
+> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (at generation time the repo held only the SRS and `AGENTS.md`; this file itself is the generated deliverable). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is built strictly from the SRS (v1.0 from v2.6; v1.1 from v2.7 for the English-only change — S03 Language Selection retired; v1.2 from v2.8 for the mobile-phone-only change — Tablet/Desktop §3.2 sidebar variant retired). The SRS was not modified to produce it. All figures quoted below derive from the §16 canonical dataset.
 
 ---
 
@@ -23,7 +23,7 @@ Classification:
 Every screen and flow must honor **§18**: `Normal → Edit → Cancel → Error → Empty → Success → Confirmation → Back Navigation` and the **§17 Global States** row (Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast/Snackbar · Bottom sheet · Modal · Full-screen error recovery) — applied to **all 41 screens** (defined once below; mapped screen-by-screen in the **§9 universal-element compliance matrix**).
 
 **Design constraints applied to every screen (not repeated per-screen):**
-English-only UI — one language everywhere incl. documents, no language switcher (§5.4) · Hugeicons Stroke Rounded only, icon always paired with text (§5.5, §17) · frosted-glass app bar / bottom nav / sheets / modals with solid fallback (§5.1) · numeric keypad for all money & quantity input (§5.1, §5.2) · green = profit, red = loss everywhere (§5.2) · ₹ & Indian digit grouping (§2.7) · full-width single-column cards on mobile, 2-col/table layouts on tablet-desktop via sidebar (§5.1, §3.2) · one canonical item image reused (§5.3) · gentle confirmation behind **every** Delete — one CRUD pattern everywhere (§5.1, §15.3) · alert and document text in plain English (§14, §5.4) · offline-first, sync/backup optional and non-blocking (§2.8 rule 3, §15.2).
+English-only UI — one language everywhere incl. documents, no language switcher (§5.4) · Hugeicons Stroke Rounded only, icon always paired with text (§5.5, §17) · frosted-glass app bar / bottom nav / sheets / modals with solid fallback (§5.1) · numeric keypad for all money & quantity input (§5.1, §5.2) · green = profit, red = loss everywhere (§5.2) · ₹ & Indian digit grouping (§2.7) · full-width single-column cards, mobile phone only — no tablet/desktop variant (§5.1, §3.1) · one canonical item image reused (§5.3) · gentle confirmation behind **every** Delete — one CRUD pattern everywhere (§5.1, §15.3) · alert and document text in plain English (§14, §5.4) · offline-first, sync/backup optional and non-blocking (§2.8 rule 3, §15.2).
 
 ---
 
@@ -147,7 +147,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 #### S09 · Item Home / All Items
 - **SRS:** §6.2, §17 (Item Home; Search/Filter row), §5.1/§5.3
-- **Content:** Full-width single-column card grid (2 columns on large screens, §5.1); product-style cards: **large hero image** (4:3/1:1 crop), Name, category, default unit, **live price hint**, state badge **"Added ✓"** and "500 kg in Cart" when added, tap-to-continue.
+- **Content:** Full-width single-column card grid — mobile phone only (§5.1, §3.1); product-style cards: **large hero image** (4:3/1:1 crop), Name, category, default unit, **live price hint**, state badge **"Added ✓"** and "500 kg in Cart" when added, tap-to-continue.
 - **Search (V, §17 "Search / Filter Items" row):** `Search vegetables or items…` — matches **item names** (§5.4, §6.2), groceries and custom items; **No-results state** (§17).
 - **Filters (V):** All · Vegetables · Groceries · Other Items. Deactivated items hidden (visible only via Settings → Item Management, S35 — §6.2, §13).
 - **Actions:** Tap card → S10; (from S35) also entry into S11 editor context.
@@ -594,7 +594,7 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 
 | ID | Component | SRS |
 |----|-----------|-----|
-| G1 | **Bottom navigation** — floating frosted glass, 5 destinations: Home · Vegetables · Cart (**badge = item count**) · Inventory · More. Tablet/desktop: **sidebar with the same structure** (§3.2). | §3.1, §5.1, §17 |
+| G1 | **Bottom navigation** — floating frosted glass, 5 destinations: Home · Vegetables · Cart (**badge = item count**) · Inventory · More. Mobile phone only — no tablet/desktop sidebar variant (SRS v2.8). | §3.1, §5.1, §17 |
 | G2 | **Floating cart indicator** — glass; "Cart · 3 Items · Investment ₹34,000"; Hugeicons cart icon paired with text (never emoji); on Home and other screens. **Variants (§2.8.2, §6.1):** Active Cart ("Open · n items") · Completed-Day Home state ("Completed today — Edit Today's Cart" while window open / "Completed & Locked") · **Correction chip** "Correcting TRX 20-Oct (R2)" persistent beside any active cart. | §3.1, §5.1, §5.5, §2.8.2 |
 | G3 | **Numeric keypad** — mandatory for **all** money & quantity input (not the OS keyboard); plain-English labels (§5.4); up to 2 decimals (§2.7). | §5.1, §5.2 |
 | G4 | **Toast/Snackbars** (§15.4 exact set): Added to Cart ✓ · Institution Created ✓ · Tender Price Updated ✓ · Inventory Updated ✓ · Cart Completed ✓ — short, unobtrusive, no excessive animation. | §15.4 |
@@ -752,7 +752,6 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 |---|---|
 | 5-tab bottom nav + More contents (incl. Payments & Dues, Seller Payables) | G1 (S08/S09/S12/S24 + More hub) |
 | Persistent cart indicator | G2 |
-| Tablet/desktop sidebar; same logic | §3.2 applied across all screens (responsive variants documented globally) |
 | First-time setup flow | S01/S02 + S04–S07 (WF-01) |
 | Daily supply flow + supply irregularity | WF-02 + S12/S30 (carts only on supply days; dues/aging/alerts run on quiet days §4.2) |
 | Decision points never automated | §4.3 mapped: BS-01 (inventory vs buy), BS-03 (remaining), BS-04 (rejected), BS-15 (missing price), DL-06 (one confirm) |
@@ -836,7 +835,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | No double counting; frozen history; correction window + lock + snapshots; profit ≠ cash | BS-05 · S29 · §2.8 cluster · §2.9 cluster |
 | Never auto-loss; post-lock via adjustments | BS-03/04 · BS-11 |
 | One active cart; confirm once; expenses per §2.5 | S12/S15/DL-06 · BS-08 |
-| Mobile-first; desktop sidebar | §3/§3.2 responsive (G1/G8) |
+| Mobile phone only; no tablet/desktop sidebar variant (SRS v2.8) | §3.1 · G1 |
 | Fast minimal-typing UX: visual selection, auto rates, auto inventory detection, instant totals, bag entry, last-rate prefill | S09/S10/BS-01/BS-16 |
 | English-only UI incl. memos (§5.4) | all screens · BS-12 |
 | Hugeicons single system; icon+text; alert icons | G10 |
@@ -862,14 +861,14 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 
 ## 9. Per-Screen Universal-Element Compliance Matrix ("what must be on every screen")
 
-This matrix verifies, screen by screen, that every universal constraint from §3.1–§3.2, §5.1–§5.5, §2.7–§2.8, §15 and §18 of the SRS is either **present** or **explicitly not applicable**. It is the companion checklist to §19 for the build phase; a screen missing any enforced row here fails acceptance.
+This matrix verifies, screen by screen, that every universal constraint from §3.1, §5.1–§5.5, §2.7–§2.8, §15 and §18 of the SRS is either **present** or **explicitly not applicable**. It is the companion checklist to §19 for the build phase; a screen missing any enforced row here fails acceptance.
 
 ### 9.1 Universal elements (defined once, checked everywhere)
 
 | # | Element | Source | Regime |
 |---|---------|--------|--------|
 | U1 | Glass app bar with screen title (frosted surface + solid fallback) | §5.1, G6 | Always (except S01 splash) |
-| U2 | Persistent navigation — bottom nav on mobile, sidebar on desktop, same 5 destinations | §3.1, §3.2, G1 | Always from S08 (post-setup shell) |
+| U2 | Persistent navigation — bottom nav, same 5 destinations (mobile phone only; retired sidebar never returns) | §3.1, G1 | Always from S08 (post-setup shell) |
 | U3 | Global states row (Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast · Sheet · Modal · Full-screen recovery) | §17 global row, G5 | Always |
 | U4 | Hugeicons Stroke Rounded only; every icon paired with text; plain-English labels everywhere (§5.4) | §5.5, §5.4, G10 | Always |
 | U5 | Offline-first: local-first operation, non-blocking sync indicator, no blocking errors offline | §2.8.3, §15.2, G8 | Always |
@@ -981,4 +980,4 @@ Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (
 - **Universal-element coverage:** §9 maps every screen against 13 universal elements (U1–U13: 7 always-on + 6 conditional); BS/DL overlays inherit their parent screen's elements and carry their own keypad/₹/profit-loss constraints where relevant (§9.4).
 - **Traceability:** §17 map covered **40/40** rows (+2 meta rows); §14 alerts **13/13**; §15.1 messages **12/12**; §12 reports **14/14**; §11 tabs **7/7**; §13 groups **6/6**; §16 canonical figures mapped to their display screens.
 - **Unresolved gaps:** 11 logged (G-0–G-10) — the dominant ones: missing source prompt file (G-0), overpayment-vs-validation tension (G-1), alert-threshold settings placement (G-2), discard-cart dialog not in §17's list (G-3), image mechanism (G-4), and v1-scope items (G-7/G-8/G-10).
-- **No app code generated** (per AGENTS.md) — spec-only repo. Doc updated in place (v1.1) to mirror SRS v2.7's English-only change; all §16 canonical figures unchanged.
+- **No app code generated** (per AGENTS.md) — spec-only repo. Doc updated in place: v1.1 mirrored SRS v2.7's English-only change; v1.2 mirrored SRS v2.8's mobile-phone-only change (tablet/desktop sidebar retired). All §16 canonical figures unchanged.

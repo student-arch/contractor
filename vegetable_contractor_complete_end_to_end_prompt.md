@@ -1,5 +1,5 @@
 # VEGETABLE CONTRACTOR BUSINESS MANAGEMENT APP
-## Complete End-to-End UI/UX Design & Application Build Specification (v2.7)
+## Complete End-to-End UI/UX Design & Application Build Specification (v2.8)
 
 > **Document status:** Single source of truth. This version consolidates the earlier 101-section draft into a non-repetitive, internally consistent spec. One canonical worked example (Section 16) is used everywhere; all figures in this document derive from it.
 >
@@ -16,6 +16,8 @@
 > **Change summary v2.5:** **Other Day Entries get the same correction window** as carts — errors fixed by end of the next day, locked after, repair-by-compensating-entry (§2.8 rule 6); **Data Recording Standard (§2.11)** — every fact stored as a structured, dated, attributed row so the ledger is AI/analysis-ready from day one; **§21 Future Roadmap** — Data → Insight → Predictive → AI assistant, explicitly outside the v1 build but reading exactly the data §2.11 guarantees; **multi-year performance** — pagination/virtualized lists and precomputed aggregates (§10, §11); **inactive institutions stay safe** — deactivation warns about active tenders/unbilled (accrued) dues (§7.4, §15.2); **quality/grade note** optional on purchase lines — the field future price-vs-quality AI learns from (§6.3); single editable **reason editor** shared by deductions, waste/loss and rejection reasons (§13); **Home pending-split example re-derived from the canonical dataset** (§6.1, §7.5.6).
 >
 > **Change summary v2.6:** **Iconography mandated — Hugeicons** (§5.5): single library, Stroke Rounded style family only, color/weight carries state instead of style switching, icons always paired with Telugu-first text, per-slot assignment from the §17 screen map; reflected in §19 checklist.
+>
+> **Change summary v2.8:** **Mobile-phone-only — the tablet/desktop variant removed** (§3): §3.2 Tablet/Desktop (sidebar navigation, multi-column layouts) deleted; §3.1 is now the only navigation/layout surface (floating bottom nav, full-width single-column); §5.1's "2 columns on tablets/large screens" note removed; §19 checklist updated. No §16 figures or accounting rules affected. (v2.7 change-summaries remain below as history; v2.8 supersedes them for layout.)
 >
 > **Change summary v2.7:** **Localization removed — the app is English-only** (§5.4): Telugu default/secondary dropped everywhere; the Language selection step is removed from first-time setup (§4.1) and Settings (§13, §17); item master data carries a single name field (§5.3, §5.4, §6.2, §13); search matches item names, no secondary names (§6.2); memos/bills, alerts and all documents in English (§7.5.5, §14); icons pair with text in plain English (§5.5); alert name harmonized to "**Payment Due Alert**" §7.5.6 ↔ §14; §19 checklist updated. (Earlier change-summaries mention Telugu because they describe older versions — v2.7 supersedes them.)
 
@@ -51,7 +53,7 @@
 
 ## 1.1 What This App Is
 
-A **mobile-first, single-user management application for one Vegetable Contractor.** It is a **contractor-only tool** — no institution, employee, or third party ever uses it; everyone else stays on WhatsApp calls and paper. Its **main purpose: maximize the contractor's profits on institution tenders** — by protecting margins at entry (knowing each institution's fixed rate before buying), exposing loss leaks the same day (rejections, waste, unprofitable items/institutions), recovering every rupee owed (dues, deductions, margin discipline), and preventing money from silently leaking through double-counting, missed collections, or forgotten stock.
+A **mobile-phone-only management application for a single Vegetable Contractor** — phone screens only, no tablet/desktop variant. It is a **contractor-only tool** — no institution, employee, or third party ever uses it; everyone else stays on WhatsApp calls and paper. Its **main purpose: maximize the contractor's profits on institution tenders** — by protecting margins at entry (knowing each institution's fixed rate before buying), exposing loss leaks the same day (rejections, waste, unprofitable items/institutions), recovering every rupee owed (dues, deductions, margin discipline), and preventing money from silently leaking through double-counting, missed collections, or forgotten stock.
 
 He personally uses it daily to manage:
 
@@ -237,7 +239,7 @@ Historical business performance (§1.1) is therefore not just viewable — it is
 
 # 3. NAVIGATION
 
-## 3.1 Mobile (Primary Experience)
+## 3.1 Mobile (Only Experience)
 
 Floating **frosted-glass bottom navigation** (§5.1) with 5 destinations:
 
@@ -251,12 +253,7 @@ Floating **frosted-glass bottom navigation** (§5.1) with 5 destinations:
 
 - Persistent cart indicator on Home and other screens (e.g., "Cart · 3 Items · Investment ₹34,000" — Hugeicons cart icon paired with text, §5.5 — never an emoji).
 - Large touch targets, sticky primary buttons, bottom sheets, large numbers, minimal typing.
-
-## 3.2 Tablet / Desktop
-
-- Clean sidebar navigation with the same structure.
-- Multi-column layouts, tables where useful, dashboard cards.
-- Same business logic; only layout changes.
+- **Mobile-phone only:** the app is built exclusively for phone screens — there is no tablet/desktop sidebar variant, no multi-column desktop layout; the same bottom-nav phone UX is the whole product.
 
 ---
 
@@ -320,7 +317,7 @@ Open App → Home (today's status at a glance)
 
 Surfaces & layout:
 
-- **Full-width grid/rows:** content spans the screen edge-to-edge — item browsing is a **single-column, full-width card grid** (2 columns on tablets/large screens); carts, institutions, dues, history render as **full-width list rows**. Nothing cramped, boxed-in, or centered-to-a-narrow-column.
+- **Full-width grid/rows:** content spans the screen edge-to-edge — item browsing is a **single-column, full-width card grid**; carts, institutions, dues, history render as **full-width list rows**. Nothing cramped, boxed-in, or centered-to-a-narrow-column.
 - **Rounded everything:** cards 20–24 px radius (large photos clipped by the card's rounded corners); bottom sheets 24 px top radius; **pill-shaped buttons**; inputs 12–16 px radius.
 - **Soft depth:** diffuse soft shadows only — elevation signals stacking, never harshness; generous 8-pt spacing rhythm, 16–24 px card padding, wide line height; lots of breathing room.
 - **Palette:** light clean background (near-white with a faint cool-vegetable tint); soft green accent for freshness; **green reserved for profit, red for loss/waste** across every surface; dark readable text — always AA contrast, even over glass (§5.2).
@@ -1109,7 +1106,7 @@ For every major action, design and connect the relevant:
 - [ ] No double-counting inventory (§2.3); historical rates preserved (§2.4); **correction window until end of the next day, then permanent lock with full revision snapshots (§2.8)**; profit never mixed with cash (§2.9).
 - [ ] Rejected/remaining stock is **never** auto-loss — contractor decides (§2.6); post-lock discoveries go through **Adjustments**, not history edits (§7.5.7).
 - [ ] One active cart; confirm whole cart once; expenses allocated per §2.5.
-- [ ] Mobile-first responsive layout; sidebar on desktop with same logic (§3).
+- [ ] **Mobile-phone-only layout** — bottom-nav phone UX; no tablet/desktop sidebar variant (§3.1).
 - [ ] Fast, minimal-typing UX: visual selection, auto rates, auto inventory detection, instant totals, bag-based purchase entry, **last-rate prefill** (§4.2, §5, §6.3).
 - [ ] **English-only UI** — one language everywhere including memos/bills, alerts and documents; no language switcher (§5.4).
 - [ ] **Hugeicons is the single icon system** — Stroke Rounded family only, one pinned version, icon+text pairs on every action, one icon per alert type (§5.5, §17 map).
