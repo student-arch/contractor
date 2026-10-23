@@ -1,8 +1,8 @@
 # SCREENS MASTER LIST — Vegetable Contractor Management App
 
-> **v1.2 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.8)** — the single source of truth.
+> **v1.3 · 23 Oct 2026 · Derived from `vegetable_contractor_complete_end_to_end_prompt.md` (SRS v2.9)** — the single source of truth.
 >
-> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (at generation time the repo held only the SRS and `AGENTS.md`; this file itself is the generated deliverable). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is built strictly from the SRS (v1.0 from v2.6; v1.1 from v2.7 for the English-only change — S03 Language Selection retired; v1.2 from v2.8 for the mobile-phone-only change — Tablet/Desktop §3.2 sidebar variant retired). The SRS was not modified to produce it. All figures quoted below derive from the §16 canonical dataset.
+> **Provenance note:** The file `opencode_generate_screens_master_list_prompt.md` referenced by the task **does not exist in the repo** (at generation time the repo held only the SRS and `AGENTS.md`; this file itself is the generated deliverable). The "screen blueprint" lives inside the SRS itself: **§17 Master Screen & State Map** (the grouped screen/state map) plus the screen definitions in §6–§14. This document is built strictly from the SRS (v1.0 from v2.6; v1.1 from v2.7 for the English-only change — S03 Language Selection retired; v1.2 from v2.8 for the mobile-phone-only change — Tablet/Desktop §3.2 sidebar variant retired; v1.3 from v2.9 — all ten gaps G-0–G-10 resolved in the spec, register updated in §10). The SRS was not modified to produce the MASTER LIST itself (SRS edits were the v2.9 gap decisions); all figures quoted below derive from the §16 canonical dataset.
 
 ---
 
@@ -35,7 +35,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 | Full screens (S01–S42) | **41** (S03 retired in SRS v2.7 — English-only; numbering unchanged) |
 | Bottom-sheet flows (BS-01–BS-22) | **22** |
 | Dialog definitions (DL-01–DL-14) | **14** |
-| Overlay definitions total (BS + DL) | **36** (covers all 21 items of §17's "Modals / Sheets" row + 15 additional overlays mandatory in the SRS body: §6.3, §6.6, §7.5.2, §7.5.5, §8.3, §8.5–8.6, §9.1, §10, §12, §13, §15.2, §17 image-mgmt/revision-selector) |
+| Overlay definitions total (BS + DL) | **36** (covers all **22** items of §17's "Modals / Sheets" row — now including **Discard cart**, SRS v2.9 — plus 14 additional overlays mandatory in the SRS body: §6.3, §6.6, §7.5.2, §7.5.5, §8.3, §8.5–8.6, §9.1, §10, §12, §13, §15.2, §17 image-mgmt/revision-selector) |
 | Global components | **10** (G1–G10) |
 | Workflows documented | **11** (WF-01–WF-11) |
 | SRS §17 map rows covered | **40/40 screens + 2 meta rows (modals, global states)** |
@@ -67,7 +67,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 \* BS-16 (Edit qty/rate) serves both Cart and Item Detail.
 
-**Bottom navigation (§3.1, G1):** Home (S08) · Vegetables (S09) · Cart (S12) · Inventory (S24) · More → Institutions (S17), Payments & Dues (S23), Seller Payables (S27), Profit & Loss (S31), History (S28), Reports (S32), Settings (S34). Attention Center (S42) is badged on Home. Dues Overview (S23) has one hub target — both labels ("Payments & Dues" §3.1, "Payments & Dues overview" §7.5.6) refer to the same screen; duplicate-entry-point wording logged as Gap G-9.
+**Bottom navigation (§3.1, G1):** Home (S08) · Vegetables (S09) · Cart (S12) · Inventory (S24) · More → Institutions (S17), Payments & Dues (S23), Seller Payables (S27), Profit & Loss (S31), History (S28), Reports (S32), Settings (S34). Attention Center (S42) is badged on Home. Dues Overview (S23) has one hub target — both labels ("Payments & Dues" §3.1, "Payments & Dues overview" §7.5.6) refer to the same screen (register G-9: documented, no change needed).
 
 ---
 
@@ -86,7 +86,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 #### S02 · Welcome / Intro
 - **SRS:** §4.1, §17 ("Slides, Skip")
-- **Fields:** Intro slides (content **not specified** — see Gap G-5).
+- **Fields:** Intro slides — **copy defined in SRS v2.9 (§4.1):** ① *"Know your price before you buy."* (fixed tender rates protect the margin) · ② *"Enter once — every rupee tracked."* (cart → confirm-once → dues/waste on record); **Skip always visible** (was Gap G-5).
 - **Actions:** Next; **Skip**.
 - **Nav:** out → S04.
 - **States:** Normal; skipped → jumps to S04; back navigation honored (§18).
@@ -103,7 +103,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 #### S05 · Initial Items
 - **SRS:** §4.1, §17 ("Pre-seeded vegetables/groceries, custom item")
-- **Fields:** Seeded catalog (Vegetables: Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach…; Groceries: Rice, Dal, Oil, Sugar…; §6.2) each with image, name, unit; per-item defaults (shelf-life alert ages per §16.1: leafy 1d, veg 3d, groceries none — full seed table not enumerated, Gap G-6).
+- **Fields:** Seeded catalog — **enumerated in SRS v2.9 (§6.2, resolves G-6):** Vegetables: Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach · Groceries: Rice, Dal, Oil, Sugar (each with image, name, unit; §16.1 canonical overrides: Tomato 3d · Potato 14d · Onion 30d; leafy 1d; other veg default 7d; groceries none — editable per item §8.1); anything beyond is a custom item.
 - **Actions:** Edit item (→ S11 shared form); Add custom item; Continue.
 - **Nav:** out → S06.
 - **States:** Seeded list; empty-if-skipped variant; custom-item add form inline.
@@ -171,7 +171,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 #### S11 · Add / Edit Custom Item (Item Master editor)
 - **SRS:** §17 ("Add/Edit Custom Item: Image mgmt, unit selection, deactivate confirmation, deactivated list, item history"), §13 Items, §6.2
-- **Fields:** Name* · Category (Vegetables / Groceries / Other Items) · Unit (kg/litre/sack — one per item, §15.2) · **Purchase-unit conversion** (optional: bag/sack/crate/box = N base units, §6.3) · **Shelf-life alert age (days)** (defaults leafy 1 / veg 3 / groceries none; §8.1, §16.1) · **Image — one canonical per item (§5.3)** — set/replace via **BS-21** Image Picker (bundled vs captured vs gallery mechanism unresolved, Gap G-4) · Active flag.
+- **Fields:** Name* · Category (Vegetables / Groceries / Other Items) · Unit (kg/litre/sack — one per item, §15.2) · **Purchase-unit conversion** (optional: bag/sack/crate/box = N base units, §6.3) · **Shelf-life alert age (days)** (defaults leafy 1 / veg 7 / groceries none; §16.1 canonical overrides: Tomato 3 · Potato 14 · Onion 30; §8.1, §16.1) · **Image — one canonical per item (§5.3)** — set/replace via **BS-21** Image Picker (**mechanism resolved in SRS v2.9**: bundled seed set or camera/gallery pick with thumbnail preview — was Gap G-4) · Active flag.
 - **Actions:** Save; **Deactivate** → DL-05 (never delete; ID integrity for historical rows, §2.11.4, §13); view deactivated list (from S35 only, §6.2); view **item history** (past purchase rates/usage — read-only ledger view, §17).
 - **Nav:** in: S09 context; S35. out: back to list.
 - **States:** Normal / Edit / Cancel / Error / Success toast ("Institution Created ✓"-style feedback §15.4 pattern) / Deactivated view.
@@ -321,7 +321,7 @@ English-only UI — one language everywhere incl. documents, no language switche
   - **Payment-overdue badges** (Payment Due Alert trigger §14).
 - **Actions:** **Record Payment** → BS-09 (amount received + deduction lines, FIFO w/ manual targeting override) · **Prepare Period Bill** → BS-10 · **Record Adjustment** → BS-11 · **Generate memo/bill** → BS-12.
 - **Nav:** in: S19 (Receivables & Payments), S23 target. out: BS-09/10/11/12.
-- **States:** Empty (no dues — cash buyer); per-period states; **"Shared ✓" / Outdated markers** on previously shared memos/bills after a revision or adjustment (§7.5.5); validation §15.1 (deductions+received > pending; shared-bill edit warning; downward revision credit notice — see Gap G-1 tension).
+- **States:** Empty (no dues — cash buyer); per-period states; **"Shared ✓" / Outdated markers** on previously shared memos/bills after a revision or adjustment (§7.5.5); validation §15.1 (deductions+received > pending → **overpayment intent step**, SRS v2.9; shared-bill edit warning; downward revision credit notice — G-1 resolved).
 - **Requirements:** Deactivated institution's dues remain visible and collectable (§7.4, §15.2); dues formulas exact; FIFO oldest-period-first default (§7.5.3).
 
 #### S23 · Dues Overview (More)
@@ -372,7 +372,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 #### S27 · Seller Payables
 - **SRS:** §9.1, §17 ("Seller rows: owed / aging / status (Open · Partly settled · Settled) · purchase flag paid/credit · settlements FIFO · due-date alerts")
 - **Content:** Per-seller rows: amount owed · purchase date(s) · oldest aging · status (**Open · Partly settled · Settled**); data originates from purchase-line flag on S10 (Paid now default / On-credit → seller name + optional due date).
-- **Actions:** **Settle open lines** → BS-13 (payment amount + reference, FIFO); quick view of unsettled/on-credit lines; Seller Payable Due alert surface (§14; option alert N days around due date — setting home unresolved, Gap G-2).
+- **Actions:** **Settle open lines** → BS-13 (payment amount + reference, FIFO); quick view of unsettled/on-credit lines; Seller Payable Due alert surface (§14; alert lead **3 days, set in Settings → App — SRS v2.9**, resolves G-2).
 - **Semantics:** P&L unchanged — daily Investment and Total Cost remain recognized at **purchase date**; settlements move **cash only** ("money in hand today" = receipts − settlements − expenses; §9.1, §2.9, §16.9: 24-Oct settlement of the ₹15,000 credit tomato = ₹0 in P&L).
 - **Nav:** in: More. out: BS-13.
 - **States:** Empty if he always buys cash (§9.1 "stays empty — zero extra effort").
@@ -481,8 +481,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 #### S37 · App Settings
 - **SRS:** §13 App, §14 thresholds, §17
-- **Fields:** Appearance/Theme · **default Overdue Alert Days** · **backup reminder interval** (default 7 days) · links to Expense Category Editor (S38) and Reason Editor (S39).
-- **Gap flags (G-2):** the SRS also requires **contractor-set Long-Pending Dues aging threshold** (§7.5.6), **Tender Ending Soon N days** (§14, default 7), **Seller Payable alert N days** (§9.1) but §13 does not explicitly name a settings row for them — this screen is the natural home (see Gaps).
+- **Fields:** Appearance/Theme · **default Overdue Alert Days (default 7 — global fallback pre-filling the Add-Tender field, §7.2)** · **alert thresholds — Long-Pending Dues aging (default 30 days) · Tender Ending Soon N days (default 7) · Seller Payable alert N days (default 3)** (SRS v2.9, resolves G-2) · **backup reminder interval** (default 7 days) · links to Expense Category Editor (S38) and Reason Editor (S39).
 
 #### S38 · Expense Category Editor
 - **SRS:** §13 ("Expense category editor"), §9 (Transport, Labour, Loading, Unloading, Packaging, Other — configurable)
@@ -514,7 +513,7 @@ English-only UI — one language everywhere incl. documents, no language switche
 
 #### S42 · Attention Center
 - **SRS:** §14 (13 alert types), §17 ("All alerts from §14"), §6.1 (badged section on Home)
-- **Classification note:** §17 lists it as a module row (screen); §14 says "shown on Home (badged) and optionally local notifications". Treated here as a reachable full list view (badge → S42); surface ambiguity logged as Gap G-7.
+- **Classification note (resolved — was G-7):** §17 lists it as a module row; SRS v2.9 (§14) confirms the **badge on Home opens a full-screen Attention Center list (S42)**. It is app-surface #41 in this doc.
 - **Content — all §14 alerts (each with icon from §5.5 per-alert slot, plain-English copy per §5.4):**
   | # | Alert | Trigger (per §14) | Surfaces |
   |---|-------|-------------------|----------|
@@ -524,15 +523,15 @@ English-only UI — one language everywhere incl. documents, no language switche
   | 4 | Inventory Attention | Damaged stock / items awaiting decision | S08, S24 |
   | 5 | Old Stock Alert | Lot age > item shelf-life alert age (§8.1) | S24, S08 |
   | 6 | Payment Due Alert | Period end + Overdue Alert Days passed, unpaid billing (§7.5.6) | S08, S22, S23 |
-  | 7 | Long-Pending Dues | Aging beyond contractor-set threshold (§7.5.6) | S23, S08 (threshold setting — Gap G-2) |
+  | 7 | Long-Pending Dues | Aging beyond threshold (default 30 days — Settings → App, SRS v2.9 §13) (§7.5.6) | S23, S08 |
   | 8 | Backup Due | No backup in N days (default 7, §13) | S08 + S40 |
-  | 9 | Tender Ending Soon | N days (default 7) before End Date: "Tender 'X' ends 31 Oct — bill the period" | S08, S19/S22 ("prepare bill?" chip) |
-  | 10 | Seller Payable Due | On-credit purchase due date approaching/passed, unsettled (§9.1) | S08, S27 |
+  | 9 | Tender Ending Soon | N days (default 7 — Settings → App) before End Date: "Tender 'X' ends 31 Oct — bill the period" | S08, S19/S22 ("prepare bill?" chip) |
+  | 10 | Seller Payable Due | On-credit purchase due date approaching/passed, unsettled (alert lead default 3 days — Settings → App) (§9.1) | S08, S27 |
   | 11 | Price Updated | Fixed tender price changed (informational) | toast/info row |
   | 12 | Transaction Completed | Cart confirmed (informational) | toast/info row |
   | 13 | Waste/Loss Alert | Waste action recorded (informational) | toast/info row |
 - **Nav:** in: S08 badge. out: per-alert target (cart, inventory, receivables, settings…). All text in plain English (§14, §5.4).
-- **States:** Empty ("all clear"); local OS notifications **optional** (§14 — scope flag G-8).
+- **States:** Empty ("all clear"); **in-app only in v1** — OS-local notifications deferred post-v1 (§14, §21 rule 4 — G-8 resolved).
 
 ---
 
@@ -550,7 +549,7 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 | BS-06 | Sell Inventory | §8.5, §17 "Sell Inventory" | select quantity → selling rate → review (revenue, original cost, **profit formula 13** — e.g., 50 @ ₹35 → ₹1,750 rev, ₹1,500 cost, **+₹250**) → confirm → complete. Date-anchored (Other Day Entry on no-cart days §10.1). Negative sale shows red. |
 | BS-07 | Mark Waste / Damaged | §8.6, §8.1, §17 "Mark Waste" | select quantity → **reason (dropdown, editable via S39)** → **loss preview (formula 12)** — e.g., 20 kg @ ₹30 → Loss ₹600 → confirm **"Are you sure this stock is unusable?"** (§15.3) → complete; lot → Waste/Loss status; date-anchored. |
 | BS-08 | Add / Edit Expense | §9, §17 "Add expense" | Expense Type (configurable set S38) · Amount (numeric keypad G3) · Optional note · **Optional assignment** to institution/item (default **day-level**, §2.5). Validations §15.1. Edit before confirm only. |
-| BS-09 | Record Payment (with Deductions) | §7.5.3, §17 "Record payment" | Fields: **Amount received** · Reference (UTR/cheque/DD/voucher no.) · note · date. **Deduction lines** (add one or more): reason (editable set — Quality · Damage · Quantity/short weight · Return · Other, S39) · amount · optional link to transaction/adjustment. Net: dues reduce by Received + Deductions (formula 14). **Applied oldest pending period first (FIFO) w/ manual targeting override.** Overpay/downward-revision → credit balance ("Advance from Institution A: ₹X", auto-applied FIFO next bill) with warning: *"₹15,000 is already collected against this bill — revised total is ₹13,000. ₹2,000 becomes credit balance."* Validation: "Deductions plus received cannot exceed the pending amount." (§15.1 — see Gap G-1 tension with overpay credit balance). |
+| BS-09 | Record Payment (with Deductions) | §7.5.3, §17 "Record payment" | Fields: **Amount received** · Reference (UTR/cheque/DD/voucher no.) · note · date. **Deduction lines** (add one or more): reason (editable set — Quality · Damage · Quantity/short weight · Return · Other, S39) · amount · optional link to transaction/adjustment. Net: dues reduce by Received + Deductions (formula 14). **Applied oldest pending period first (FIFO) w/ manual targeting override.** Overpay/downward-revision → credit balance ("Advance from Institution A: ₹X", auto-applied FIFO next bill) with warning: *"₹15,000 is already collected against this bill — revised total is ₹13,000. ₹2,000 becomes credit balance."* **Overpayment intent step (SRS v2.9, resolves G-1):** when Deductions + Received > pending, confirm *"Received ₹X exceeds pending ₹Y — ₹Δ becomes credit balance. Record it?"* → **Record it** (credit path) / **Adjust** (return to form; plain validation applies). Validation otherwise: "Deductions plus received cannot exceed the pending amount." (§15.1) |
 | BS-10 | Prepare Period Bill | §7.5.2, §17 | Aggregate confirmed supplies within a tender's period (auto-stops at period end; **supports partial-period billing**); items summary, amounts, issue date, optional notes; display `Supply ₹X − Deductions ₹Y = Net to collect ₹Z`; confirm issue → **Bill record** ("Bill Issued"). Generated **only on demand** from the chip/S22. |
 | BS-11 | Record Post-Lock Adjustment | §7.5.7, §2.10, §17 "Add post-lock adjustment", §10 | institution · linked transaction/tender/period · type (**Rejected/Short quantity · Accepted-weight difference · Quality deduction · Other**) · quantity and/or amount · reason (editable set) · date = **discovery date** · **optional photo evidence** (weight-slip/delivery/transport — off by default, §10/§15.2). Effects preview: rejected/short qty → **inventory lot** "Institution X — Post-Supply Rejected" (then normal Use/Sell/Waste); money → **dues deduction** + **P&L Deductions line** on that date (formula 15). Appears linked in S29 ("Original + Adjustments") and S22. |
 | BS-12 | Memo / Bill Generate & Share | §7.5.5, §17 | **Only when the institution asks** (from Transaction Detail S29 or profile S19/S22). Choose type: **Transaction memo** (institution, supply date, memo number, items, quantity, **frozen tender rates**, amount per line, total, signature space) or **Period bill** (Supply − Deductions = Net to collect). On-screen preview (§5.4); **every generation timestamped**; numbering sequential per institution (A-2026-10-001; revision suffixes per §6.8); share as **screenshot/image or PDF**; optional **"Shared ✓"** marker; shared docs later outdated by revision/adjustment → warning: *"This shared bill is outdated — regenerate and share the updated version."* (§7.5.5). |
@@ -562,7 +561,7 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 | BS-18 | Restore | §13, §17 "Data restore" | Pick version-tagged file → **validate version before confirming** → destructive warning → confirm → progress → feedback. |
 | BS-19 | Export Data | §13, §2.11.5, §17 | Choose **CSV/JSON** → generate → share/save. Columns map directly to §2.11 ledger rows (purchase line · allocation · expense · payment · settlement · waste · sale · adjustment) — no re-keying later (§21 dependency). |
 | BS-20 | Import Data | §13, §17 | Pick file → **validation (+ schema/version)** → confirm → progress → feedback. |
-| BS-21 | Image Picker (item images + photo evidence) | §17 ("Image mgmt"), §5.3, §10, §15.2 (mechanism implied — Gap G-4) | One shared pick/attach overlay used by **two features**: ① **item canonical image** — set/replace in S11 (Add/Edit Item) and S35 (Item Management) — one image per item, canvas never modified (§5.3); ② **photo evidence** — attach a weight-slip / delivery / transport photo to a **confirmed transaction** (S29) or a **post-lock adjustment** (BS-11), optional and off by default (§10/§15.2). Options: camera capture · gallery/file pick · remove/none; thumbnail preview before save; reuses the same Hugeicons slot everywhere (§5.5). Nothing numeric — never affects any formula. |
+| BS-21 | Image Picker (item images + photo evidence) | §17 ("Image mgmt"), §5.3, §10, §15.2 (**mechanism resolved in SRS v2.9**) | One shared pick/attach overlay used by **two features**: ① **item canonical image** — set/replace in S11 (Add/Edit Item) and S35 (Item Management) — **bundled seed image set or camera/gallery capture/pick, thumbnail preview before save, one image per item, no in-app editing** (§5.3, was Gap G-4) — canvas never modified; ② **photo evidence** — attach a weight-slip / delivery / transport photo to a **confirmed transaction** (S29) or a **post-lock adjustment** (BS-11), optional and off by default (§10/§15.2). Options: camera capture · gallery/file pick · remove/none; thumbnail preview before save; reuses the same Hugeicons slot everywhere (§5.5). Nothing numeric — never affects any formula. |
 | BS-22 | Report Export / Share | §12, §17 ("detail · export") | From S33 report detail: choose output **Share · Print · PDF · CSV** (structured summary rendered in English §5.4, ₹ grouped §2.7); generation is read-only — no report editing, no report builder. Success feedback per §18. |
 
 ---
@@ -581,8 +580,8 @@ Each flow carries its own §18 state chain and validation. Shared styling: frost
 | DL-06 | **Confirm & Complete** — whole-cart summary requiring explicit confirm (ONE per cart, §4.3) | §6.8, §15.3 | S15 | After confirm → S16; re-confirms gain R-suffix (§2.8). |
 | DL-07 | Delete All Data — **double confirmation**, warns permanent loss | §13, §15.3 | S40 | |
 | DL-08 | Duplicate item in cart — "Edit existing entry" / "Add a separate purchase line" | §6.3, §15.2, §17 | S10 on repeat add | Multiple lines allowed; combined qty + weighted-avg rate shown in S12. |
-| DL-09 | Continue old cart? — "Continue yesterday's cart?" or "Start fresh" | §15.2 (Cart across days) | S12 open with stale date | Old cart must be confirmed or explicitly discarded first. |
-| DL-10 | **Discard cart** confirmation (implied by §15.2 "explicitly discarded"; **absent from §17 modal list — flagged Gap G-3**) | §15.2 | DL-09 "Start fresh" path | Destructive-ish confirm; releases reservations (§8.4). |
+| DL-09 | Continue old cart? — "Continue yesterday's cart?" or "Start fresh" | §15.2 (Cart across days) | S12 open with stale date | Old cart must be confirmed or **discarded** first (discard confirm = DL-10, §17 modal row SRS v2.9). |
+| DL-10 | **Discard cart** confirmation ("Discard today's cart? Entered items will be removed." — Cancel/Discard) | §15.2, **§17 modal row (officially added SRS v2.9 — resolves G-3)** | DL-09 "Start fresh" path | Destructive-ish confirm; releases reservations (§8.4). |
 | DL-11 | Inventory quick-action menu — Use in Supply · Sell · Mark Waste (§17 "Inventory action") | §8.2, §8.1 | S25 / S24 card | Routes to BS-05/06/07. |
 | DL-12 | Generic selector sheets (reusable pick-lists): Institution · Item · Unit · Expense category · Loss reason · Rejection reason | §17 modal row; editable sets §13 | expense entry (type), assignment, reason pickers, unit | All selections come from editable dropdown sets — **no free-text reasons** (§2.11.2, §15.2). |
 | DL-13 | **Revision picker (R1/R2/…)** | §17 ("revision selector (R1/R2…)"), §2.8.5, §6.8 | S29 Revision row (transactions with revisions after re-confirms) | Selector overlay listing all stored revision snapshots with per-revision reference (TRX-20261020-R2…); dues & memos always follow the **latest** revision (§2.8.5); view-only switch — switching revisions never edits history. |
@@ -689,7 +688,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | Item Detail (Quantity Entry) | S10 |
 | Inventory Availability Check | BS-01 |
 | Add to Cart (toast · duplicate prompt · error) | S10 + DL-08 + G4 |
-| Add/Edit Custom Item (Image mgmt, unit, deactivate confirmation, deactivated list, item history) | S11 (+S35 deactivated list; DL-05; BS-21) |
+| Add/Edit Custom Item (Image mgmt — bundled set or camera/gallery §5.3 SRS v2.9, unit, deactivate confirmation, deactivated list, item history) | S11 (+S35 deactivated list; DL-05; BS-21) |
 | **Cart** (Empty · Active · item detail · edit qty/rate · remove confirmation · investment summary · validation · Continue · no Correction Mode here) | S12 (+BS-16, DL-01) |
 | Institution List / Profile (empty · search · add · edit · tenders multi · deactivation w/ open state named) | S17 / S18 / S19 (DL-04) |
 | Fixed Tender Prices (list · add · edit · delete confirm · price history · missing-price sheet) | S21 (+BS-15, DL-03) |
@@ -717,7 +716,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | Settings Dashboard (all groups) | S34 (+S35–S37, S41) |
 | Data Mgmt (confirmations · destructive warnings · progress · completion · Delete All double confirm) | S40 (+BS-17–20, DL-07) |
 | Attention Center (all §14 alerts) | S42 (+S08 badge section) |
-| Modals / Sheets row (21 items) | §4–§5 registries: Institution DL-12 · Item DL-12 · Unit DL-12 · Expense category DL-12 · Inventory action DL-11 · Loss reason DL-12 · Rejection reason DL-12 · Select tender BS-14 · Record payment BS-09 · Settle seller BS-13 · Add post-lock adjustment BS-11 · Edit qty/rate BS-16 (one sheet covering the row's two separate items "Edit qty" and "Edit rate") · Add expense BS-08 · Remove item DL-01 · Mark waste BS-07 · Inventory usage BS-05 · Inventory sale BS-06 · Cart completion DL-06 · Data restore BS-18 · Data deletion DL-07 · **beyond-row overlays:** BS-21 (image picker/photo evidence) · BS-22 (report export/share) · DL-13 (revision picker) · DL-14 (attachment viewer) |
+| Modals / Sheets row (22 items — SRS v2.9 added "Discard cart") | §4–§5 registries: Institution DL-12 · Item DL-12 · Unit DL-12 · Expense category DL-12 · Inventory action DL-11 · Loss reason DL-12 · Rejection reason DL-12 · Select tender BS-14 · Record payment BS-09 · Settle seller BS-13 · Add post-lock adjustment BS-11 · Edit qty/rate BS-16 (one sheet covering the row's two separate items "Edit qty" and "Edit rate") · Add expense BS-08 · Remove item DL-01 · Mark waste BS-07 · Inventory usage BS-05 · Inventory sale BS-06 · Cart completion DL-06 · **Discard cart DL-10** · Data restore BS-18 · Data deletion DL-07 · **beyond-row overlays:** BS-21 (image picker/photo evidence) · BS-22 (report export/share) · DL-13 (revision picker) · DL-14 (attachment viewer) |
 | Global States row (11 states, every screen) | G5 (+per-screen States lists) |
 
 ### 8.2 §2 accounting rules
@@ -776,7 +775,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | 14 report types + detail + export, no builder | §12 | S32/S33 (+G7 picker) |
 | Report inventory values chain | §12/§8.8 | S33 Inventory, Expense, P/L, etc. |
 
-### 8.6 §13 settings groups → S34 hub: Institutions S17 · Items S35 · Business S36 · App S37 (expense categories S38 · reason editor S39 · overdue alert days · backup interval; no Language row — English-only §5.4) · Data S40 · About S41. Deactivation safeties DL-04/DL-05. §2.11 export mirror BS-19.
+### 8.6 §13 settings groups → S34 hub: Institutions S17 · Items S35 · Business S36 · App S37 (expense categories S38 · reason editor S39 · overdue alert days · **alert thresholds Long-Pending/Tender-Ending/Seller-Payable, SRS v2.9** · backup interval; no Language row — English-only §5.4) · Data S40 · About S41. Deactivation safeties DL-04/DL-05. §2.11 export mirror BS-19.
 
 ### 8.7 §14 alerts — mapped 13/13 in S42 table (S08 badge hosts the same list).
 
@@ -795,7 +794,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | "Up to 2 decimal places allowed." | S10 keypad, BS-16 |
 | Confirm-with-warnings (unallocated / no rates / rejections) | S14 warnings list |
 | "Choose the tender for this supply." | BS-14 |
-| "Deductions plus received cannot exceed the pending amount." | BS-09 (⚠ tension with overpay→credit-balance: Gap G-1) |
+| "Deductions plus received cannot exceed the pending amount." | BS-09 (with the **overpayment intent step** — "Record it" → credit balance; SRS v2.9, G-1 resolved) |
 | "A shared bill exists — amounts have changed. Regenerate and re-share the updated version." | BS-12 / during correction of a shared transaction |
 | "₹15,000 is already collected… ₹2,000 becomes credit balance." | BS-09 (downward revision) |
 
@@ -844,7 +843,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | Multiple tenders (picker; per-tender price lists & dues) | S20/S21/BS-14 |
 | FEFO default; backup reminder | BS-05 · §14 + S37/S40 |
 | Correction Mode separate & coexisting; blended allocation | S08/S29/S12 · BS-05 |
-| Pending split; FIFO re-mapping; credit balances auto-apply | S23 · BS-09 |
+| Pending split; FIFO re-mapping; credit balances auto-apply (via overpayment intent step); thresholds in Settings → App | S23 · BS-09 · S37 |
 | Other Day Entries date-anchored with correct aggregation | S30/S28 |
 | Payables (flag, aging, cash-only settlements) | S10/S27/BS-13 |
 | Reservations deducted; released on discard/revision; deplete at Confirm | BS-05/S12/S24 |
@@ -854,6 +853,7 @@ Partial payments keep residual visible (Partially Paid); full clearance ⇔ form
 | Standalone entries share correction window; post-window compensating entries | S30 |
 | Deactivation keeps receivables/P&L; blocks new allocations | DL-04/S13 |
 | No §21 features in v1 (but ledger capture from day one) | §21 excluded; BS-19/S10 provide training data |
+| Attention Center full-screen behind Home badge; alerts in-app only v1; Discard-cart modal exists | S42 · S08 badge · DL-10 · G5 |
 
 ### 8.11 §21 — explicit non-scope (noted once): no Insight/Predictive/AI-assistant feature ships in v1 (§19 — "No future-roadmap/AI feature ships in v1"); the only v1 obligation is capturing §2.11-shaped ledger data from day one (typed rows everywhere + BS-19 export mirrors the ledger).
 
@@ -954,21 +954,21 @@ Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (
 
 ---
 
-## 10. Unresolved Gaps & Open Questions
+## 10. Gap Register — all resolved (decisions recorded in SRS v2.9)
 
-| # | Gap | SRS anchor | Impact | Suggested resolution (for confirmation, not yet spec) |
-|---|-----|-----------|--------|--------------------------------------------------------|
-| G-0 | **`opencode_generate_screens_master_list_prompt.md` missing from repo** — this deliverable was generated from the SRS itself per the task's inline description; the referenced prompt file was never found (also no separate standalone "screen blueprint" file exists; §17 serves that role). | repo state | Process | User to supply/copy the prompt file if it prescribes a different format. |
-| G-1 | **Overpayment vs §15.1 validation tension.** §7.5.3 allows overpayment → credit balance; §15.1 blocks "deductions + received cannot exceed the pending amount". | §7.5.3 vs §15.1 | BS-09 logic | Decide: per-period validation with an explicit "accept as overpayment → credit balance" intent step (recommended), or strict block. |
-| G-2 | **Three alert thresholds lack an explicit Settings home:** Long-Pending Dues contractor-set aging threshold (§7.5.6), Tender Ending Soon N days (§14), Seller Payable alert N days (§9.1). §13's groups don't name them. | §7.5.6/§14/§9.1 vs §13 | S37/S42 | Add them to Settings → App (S37) or per-institution tender defaults (S20). |
-| G-3 | **Discard-cart confirmation** implied by §15.2 ("old cart must be confirmed or explicitly discarded first") but **missing from §17's modal list**. Included here as DL-10 to keep flows complete. | §15.2 vs §17 | DL-10 | Confirm exclusion/intent; add to §17's modal row on next spec revision. |
-| G-4 | **Custom-item image mechanism unspecified** (§17 says "Image mgmt" — capture/library/bundled set not stated). | §17, §5.3 | S11 · BS-21 | Decide: bundled seed images for standard items + camera/gallery picker (BS-21 options defined, mechanism decision pending). |
-| G-5 | **Welcome/Intro slide contents unspecified** ("Slides, Skip"). | §17, §4.1 | S02 | Confirm copy (plain-English, §5.4; 2–3 slides). |
-| G-6 | **Seed catalog completeness:** §6.2 names categories + example items; the full seeded item list (and per-item shelf-life defaults beyond §16.1's examples) is not enumerated. | §6.2/§16.1 | S05 | Confirm the seed dataset before build. |
-| G-7 | **Attention Center surface type** — §17 module row implies a screen; §14 says "shown on Home (badged) and optionally local notifications." | §17 vs §14 | S42 | Confirm badge-expands-to-list treatment (assumed here) and whether OS-local notifications are v1. |
-| G-8 | **Local notifications "optionally"** (§14) — v1 scope unclear (permission prompts, scheduling). | §14 | S42/G | Confirm deferral. |
-| G-9 | **Dues Overview duplicate entry wording** — §3.1 "More" lists Payments & Dues; §7.5.6 confirms reachability. No conflict, just one hub with one target (S23) — documented. | §3.1/§7.5.6 | none | Note: single hub handle, both labels refer to S23. |
-| G-10 | **Expense timing after Confirm** — §9 restricts edit/delete to pre-confirmation; standalone (non-cart) expense rows are not among §10.1's other entry types (sale/waste/adjustment/settlement). Spec-consistent, but worth verifying the contractor never needs a standalone expense row. | §9 vs §10.1 | S26 | Confirm intent; if needed, add Expense as a 5th other-entry type (would change §10.1/§16.9 chains). |
+| # | Gap (as originally logged) | SRS anchor | **Resolution adopted (SRS v2.9)** | Status |
+|---|-----|-----------|--------|--------|
+| G-0 | `opencode_generate_screens_master_list_prompt.md` missing from repo. | repo state | **Closed by decision:** no separate prompt file will be supplied — this MASTER LIST + the SRS (§17 as the screen blueprint) remain the two documents of record. | Closed |
+| G-1 | Overpayment vs §15.1 validation tension. | §7.5.3 vs §15.1 | **Explicit overpayment intent step** in BS-09 — when Deductions + Received exceed pending, confirm *"Received ₹X exceeds pending ₹Y — ₹Δ becomes credit balance. Record it?"* (Record = credit path / **Adjust** = return to form, plain validation then applies). (§7.5.3, §15.1) | Resolved |
+| G-2 | Three alert thresholds lacked a Settings home. | §7.5.6/§14/§9.1 vs §13 | **Settings → App (S37)** with defaults: Long-Pending Dues aging **30** · Tender Ending Soon **7** · Seller Payable alert **3** days (§13, §14 rows now cite it). | Resolved |
+| G-3 | Discard-cart confirmation missing from §17's modal list. | §15.2 vs §17 | **"Discard cart" officially added to §17's modal row** (21 → 22 items) — §15.2 ↔ DL-10 aligned. | Resolved |
+| G-4 | Custom-item image mechanism unspecified. | §17, §5.3 | **Bundled seed image set or camera/gallery pick with thumbnail preview** — one canonical image per item, no in-app editing (§5.3, §17; BS-21 updated). | Resolved |
+| G-5 | Welcome/Intro slide contents unspecified. | §17, §4.1 | **2 plain-English slides + always-visible Skip:** "Know your price before you buy." / "Enter once — every rupee tracked." (§4.1; S02 updated) | Resolved |
+| G-6 | Seed catalog not enumerated. | §6.2/§16.1 | **Seed set = exactly the §6.2-named items** (12 vegetables + 4 groceries); §16.1 canonical overrides (Tomato 3 · Potato 14 · Onion 30; leafy 1; other veg default 7; groceries none); all else = custom items (§6.2). | Resolved |
+| G-7 | Attention Center surface type ambiguous. | §17 vs §14 | **Confirmed: Home badge opens a full-screen Attention Center list (S42)** — not an inline expansion (§14, §17). | Resolved |
+| G-8 | Local notifications "optionally" — v1 scope unclear. | §14 | **In-app only in v1**; OS-local notifications deferred post-v1 as an explicit §21 item (rule 4) (§14, §21). | Resolved |
+| G-9 | Dues Overview duplicate entry wording. | §3.1/§7.5.6 | **Documented:** one hub target (S23); both labels refer to it — no change needed. | Closed (none) |
+| G-10 | Standalone (non-cart) expense rows not among §10.1 types. | §9 vs §10.1 | **Decided: no standalone expenses in v1** — expenses attach to a cart day (§9, §2.5); explicit note added to §10.1; revisit only as a post-v1 addition (not silent scope creep). | Resolved |
 
 ---
 
@@ -976,8 +976,8 @@ Notes: S02 is full-bleed intro slides — only a skip/close chrome is required (
 
 - **Feature modules:** 17 — Onboarding & Setup · Home · Items & Purchase Entry · Daily Cart · Allocation · Remaining & Rejected (flows-only) · Review & Finalization · Institutions & Tenders · Payments & Receivables · Inventory · Expenses · Seller Payables · History & Other Day Entries · P&L · Reports · Settings & Data Mgmt · Attention Center.
 - **Actual screen count:** **41 full screens** (S01–S42; S03 retired in SRS v2.7 — English-only), plus 22 bottom-sheet flows (BS-01–BS-22), 14 dialogs (DL-01–DL-14), and 10 global components (G1–G10). Screen-level state variants (V) are documented inline per screen.
-- **Overlay definitions:** **36** — covers every item of §17's "Modals / Sheets" row (21) plus 15 overlays the SRS body mandates (inventory choice · add-to-inventory · remaining · rejected · period bill · memo/bill generator · missing price · backup · export · import · discard-cart · image picker/photo evidence · report export/share · revision picker · attachment viewer).
+- **Overlay definitions:** **36** — covers every item of §17's "Modals / Sheets" row (**22**, incl. **Discard cart** per SRS v2.9) plus 14 overlays the SRS body mandates (inventory choice · add-to-inventory · remaining · rejected · period bill · memo/bill generator · missing price · backup · export · import · image picker/photo evidence · report export/share · revision picker · attachment viewer).
 - **Universal-element coverage:** §9 maps every screen against 13 universal elements (U1–U13: 7 always-on + 6 conditional); BS/DL overlays inherit their parent screen's elements and carry their own keypad/₹/profit-loss constraints where relevant (§9.4).
 - **Traceability:** §17 map covered **40/40** rows (+2 meta rows); §14 alerts **13/13**; §15.1 messages **12/12**; §12 reports **14/14**; §11 tabs **7/7**; §13 groups **6/6**; §16 canonical figures mapped to their display screens.
-- **Unresolved gaps:** 11 logged (G-0–G-10) — the dominant ones: missing source prompt file (G-0), overpayment-vs-validation tension (G-1), alert-threshold settings placement (G-2), discard-cart dialog not in §17's list (G-3), image mechanism (G-4), and v1-scope items (G-7/G-8/G-10).
-- **No app code generated** (per AGENTS.md) — spec-only repo. Doc updated in place: v1.1 mirrored SRS v2.7's English-only change; v1.2 mirrored SRS v2.8's mobile-phone-only change (tablet/desktop sidebar retired). All §16 canonical figures unchanged.
+- **Unresolved gaps: none** — the register (§10) records **11 decisions, all closed** (G-0–G-10) as SRS v2.9 changes; the largest behavioral one: overpayment intent step in Record Payment (G-1, BS-09).
+- **No app code generated** (per AGENTS.md) — spec-only repo. Doc updated in place: v1.1 mirrored SRS v2.7's English-only change; v1.2 mirrored SRS v2.8's mobile-phone-only change; v1.3 mirrored SRS v2.9's gap resolutions (register in §10). All §16 canonical figures unchanged.

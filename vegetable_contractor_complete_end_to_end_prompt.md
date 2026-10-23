@@ -1,5 +1,5 @@
 # VEGETABLE CONTRACTOR BUSINESS MANAGEMENT APP
-## Complete End-to-End UI/UX Design & Application Build Specification (v2.8)
+## Complete End-to-End UI/UX Design & Application Build Specification (v2.9)
 
 > **Document status:** Single source of truth. This version consolidates the earlier 101-section draft into a non-repetitive, internally consistent spec. One canonical worked example (Section 16) is used everywhere; all figures in this document derive from it.
 >
@@ -16,6 +16,8 @@
 > **Change summary v2.5:** **Other Day Entries get the same correction window** as carts — errors fixed by end of the next day, locked after, repair-by-compensating-entry (§2.8 rule 6); **Data Recording Standard (§2.11)** — every fact stored as a structured, dated, attributed row so the ledger is AI/analysis-ready from day one; **§21 Future Roadmap** — Data → Insight → Predictive → AI assistant, explicitly outside the v1 build but reading exactly the data §2.11 guarantees; **multi-year performance** — pagination/virtualized lists and precomputed aggregates (§10, §11); **inactive institutions stay safe** — deactivation warns about active tenders/unbilled (accrued) dues (§7.4, §15.2); **quality/grade note** optional on purchase lines — the field future price-vs-quality AI learns from (§6.3); single editable **reason editor** shared by deductions, waste/loss and rejection reasons (§13); **Home pending-split example re-derived from the canonical dataset** (§6.1, §7.5.6).
 >
 > **Change summary v2.6:** **Iconography mandated — Hugeicons** (§5.5): single library, Stroke Rounded style family only, color/weight carries state instead of style switching, icons always paired with Telugu-first text, per-slot assignment from the §17 screen map; reflected in §19 checklist.
+>
+> **Change summary v2.9:** **all ten open gaps (G-0–G-10) resolved with recorded decisions**: **Record Payment overpayment intent step** — when Deductions + Received exceed pending dues, confirm "Received ₹X exceeds pending ₹Y — ₹Δ becomes credit balance. Record it?" (Record = credit path / Adjust = fix the form) between the plain validation and the overpay path (§7.5.3, §15.1); the **three alert thresholds get a named home — Settings → App — with defaults**: Long-Pending Dues 30 · Tender Ending Soon 7 · Seller Payable alert 3 days (§13, §14); **Discard cart** confirmation officially added to §17's modal list, aligning §15.2 with the DL-10 registry; **custom-item images defined** — bundled seed set or camera/gallery pick with thumbnail preview (§5.3, §17); **Welcome/Intro slide copy specified** (2 plain-English slides + always-visible Skip, §4.1); **seed catalog enumerated** — exactly the §6.2-named items ship pre-seeded, §16.1 canonical overrides (leafy 1 · Tomato 3 · Potato 14 · Onion 30 · veg default 7 · groceries none) (§6.2); **Attention Center confirmed as a full-screen list** opened by the Home badge, alerts **in-app only in v1** — OS-local notifications deferred post-v1 (§14, §21 rule 4); **no standalone expenses in v1** — expenses attach to a cart day (§9, §2.5), the four other-entry types do not grow (§10.1). This consolidates the SCREENS_MASTER_LIST gap register (document, not new screens — all counts unchanged).
 >
 > **Change summary v2.8:** **Mobile-phone-only — the tablet/desktop variant removed** (§3): §3.2 Tablet/Desktop (sidebar navigation, multi-column layouts) deleted; §3.1 is now the only navigation/layout surface (floating bottom nav, full-width single-column); §5.1's "2 columns on tablets/large screens" note removed; §19 checklist updated. No §16 figures or accounting rules affected. (v2.7 change-summaries remain below as history; v2.8 supersedes them for layout.)
 >
@@ -269,6 +271,10 @@ Splash → Welcome/Intro → Business Profile (name, currency ₹, default unit 
 (+ contracts + tender period + fixed tender prices) → Setup Complete → Home
 ```
 
+**Welcome/Intro (2 slides, Skip always visible):** plain-English (§5.4) —
+1. *"Know your price before you buy."* — every institution's fixed tender rate is known at allocation time, so margins are protected from the first bag.
+2. *"Enter once — every rupee tracked."* — today's cart, inventory, dues and waste all start from the same confirm-once record.
+
 ## 4.2 Daily Supply Flow (When Supplies Happen)
 
 > **Supply frequency is irregular.** The contractor supplies daily only on some days; other days there is no supply at all. A cart is created **only when supplies occur** — no-supply days simply have no cart and no results. What accumulates across days regardless of frequency: inventory aging, tender-period dues, and receivables (§7.5).
@@ -344,6 +350,7 @@ Visual hierarchy over charts — large prominent numbers are the primary visuali
 - **Large, clean, realistic vegetable/grocery photos are the hero of item cards** — produce-commerce presentation: the image fills most of the card (top, consistent 4:3/1:1 crop), with name, unit and live price hint beneath.
 - Item Detail shows a large hero image above quantity/rate fields. Inventory and price lists reuse the same photos for instant recognition.
 - Photography rules: fresh, bright, appetizing but honest (no gloss or marketplace styling); one canonical image per item (managed in Item Master, §13); image = identification aid only — no badges, banners, or promotional overlays.
+- **Custom-item image mechanism (§17 "Image mgmt"):** an item's image is set from the **bundled vegetable/grocery image set** (shipped with the seed catalog, §6.2) or **captured/picked from the camera/gallery** — thumbnail preview before save; one canonical image per item, reused everywhere; no in-app image editing.
 
 ## 5.4 Language (English-Only)
 
@@ -401,7 +408,8 @@ Home exists in three variants: Empty (no data at all), Active Cart, Completed Da
 - Large visual cards: image, name, category, default unit, current cart quantity if added ("500 kg in Cart"), state badge ("Added ✓" when in cart), tap-to-continue action.
 - Search: `Search vegetables or items...` — also matches groceries and custom items; search matches **item names** (§5.4).
 - Filters: **All · Vegetables · Groceries · Other Items** (plus: show deactivated only via Settings → Item Management).
-- Categories: Vegetables (Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach, …), Groceries (Rice, Dal, Oil, Sugar, …), Other Items (contract items). Contractor can add custom items.
+- Categories: Vegetables (Tomato, Potato, Onion, Carrot, Cabbage, Cauliflower, Brinjal, Beans, Green Chilli, Lady's Finger, Coriander, Spinach), Groceries (Rice, Dal, Oil, Sugar), Other Items (contract items). Contractor can add custom items.
+- **Seed catalog (ships pre-seeded at setup):** exactly the items named above — nothing more (anything beyond is a custom item, §17 "Add/Edit Custom Item"). Seed defaults: §16.1 canonical values override the category defaults where stated — Tomato 3 · Potato 14 · Onion 30 days; leafy greens (Coriander, Spinach) 1 day; other seeded vegetables 7 days; groceries none; each editable per item (§8.1).
 
 ## 6.3 Item Detail / Quantity Entry
 
@@ -592,6 +600,7 @@ Institutions commonly **deduct money at collection time** — damaged bags, qual
 - **Deduction lines (add one or more):** reason (Quality · Damage · Quantity/short weight · Return · Other — editable set), amount, optional link to a transaction or adjustment (§7.5.7).
 - Net effect: **dues reduce by Received + Deductions** (formula 14); a period shows **Fully Paid only when Billed − Deductions − Received = 0**; partial payments leave a visible residual.
 - Overpaying — whether by a large payment or by a **downward revision after collections exist** — never loses money: the excess becomes an **institution credit balance** ("Advance from Institution A: ₹X"), displayed in the receivables view and **auto-applied FIFO to the next period's bill**. Before re-confirming a downward revision the app warns: *"₹15,000 is already collected against this bill — revised total is ₹13,000. ₹2,000 becomes credit balance."*
+- **Overpayment intent step:** when Deductions + Received would exceed the pending amount, the form shows the explicit confirm — *"Received ₹30,000 exceeds pending ₹25,000 — ₹5,000 becomes credit balance. Record it?"* — **Record it** stores the excess as credit balance (FIFO next period); **Adjust** returns to the form (the plain validation of §15.1 stays). This makes overpayment a deliberate choice, never a silent surprise.
 - **Revision re-mapping:** when a cart is revised within its window (§2.8), payment/deduction applications **re-run FIFO against the latest revision** — nothing needs manual untangling.
 - The reason editor (payment deductions · waste/loss marks · rejection reasons) is **editable in Settings** (§13); deduction defaults: Quality · Damage · Quantity/short weight · Return · Other.
 - Applied to the **oldest pending period first (FIFO)** with manual targeting override.
@@ -615,7 +624,7 @@ Institutions commonly **deduct money at collection time** — damaged bags, qual
 
 - Home shows the pending figure **split** (§6.1): as of 20 Dec (§16.8): `Pending ₹36,500 — Billed pending ₹5,550 · Unbilled (accrued) ₹30,950`.
 - The **Payments & Dues overview** is reachable from **More**: per-institution rows (accrued, billed pending, credit balance, oldest aging) with a quick **Record Payment** action.
-- Alerts (§14): **Payment Due Alert** (period end + Overdue Alert Days passed with unpaid billing) and **Long-Pending Dues** (contractor-set aging threshold).
+- Alerts (§14): **Payment Due Alert** (period end + Overdue Alert Days passed with unpaid billing) and **Long-Pending Dues** (aging threshold — default 30 days, Settings → App §13).
 - Reports get a **Payment Dues report** and a **Cash-vs-Accrued summary** (§12).
 
 ### 7.5.7 Post-Lock Adjustments (after the correction window closes)
@@ -724,7 +733,7 @@ Every movement recorded and traceable per lot: date, +/− quantity, source/dest
 Mandi sellers commonly extend credit ("khata") — settled days later. This mirrors §7.5 for the purchase side:
 
 - **Purchase payment flag** on every purchase line (Item Detail, §6.3): **Paid now** (default) / **On-credit** → seller name (free-text person list) + optional due date. If he always buys cash, this screen simply stays empty — zero extra effort.
-- **Seller Payables screen** (More → Seller Payables): per-seller rows — amount owed, purchase date(s), oldest aging, settled status (**Open · Partly settled · Settled**); settle open lines with payment entries (amount + reference, FIFO); option alert N days around due date.
+- **Seller Payables screen** (More → Seller Payables): per-seller rows — amount owed, purchase date(s), oldest aging, settled status (**Open · Partly settled · Settled**); settle open lines with payment entries (amount + reference, FIFO); option alert N days around due date (default 3 — Settings → App, §13).
 - **P&L semantics unchanged:** daily Investment and Total Cost still recognize purchases at the **purchase date** — payables only change the **cash picture** ("money in hand today" = receipts − settlements − expenses).
 - **Seller Payable Due alert** (§14): due date approaching or passed while unsettled.
 - Reports (§12) gain a **Payables report**; the Cash summary counts settlements.
@@ -758,6 +767,7 @@ Inventory sales (§8.5), waste (§8.6), post-lock adjustments (§7.5.7), and sel
   - Adjustment → inventory in and/or a Deductions line (formula 15).
   - Payable settlement → cash-out only (§9.1 — never P&L; the cost was recognized at purchase).
 - A **waste-only day** renders as a Loss day (red −₹X — no revenue, so margin stays blank per formula 10/§15.2); a **sale-only day** follows normal margin rules (negative margin shows as a red Loss display, §15.2). The Home TODAY cards aggregate cart + other entries for the current date.
+- **No standalone expenses in v1 (decided — the former Gap G-10):** expenses attach to a **cart day** (entered via the day's Expense List, §9) and are allocated only there — assigned (§2.5) or day-level; there is no expense-only entry on a no-cart day. Every "money moved on a quiet day" need other than expenses is covered by the four other-entry types; a standalone expense row would be a v1.1+ addition touching §9/§10.1 and §2.5, not silent scope creep.
 
 ---
 
@@ -794,7 +804,7 @@ Keep settings light:
 | Institutions | Manage institution profiles, fixed tender prices |
 | Items | Vegetable/grocery lists, add/edit items, images, single Name per item (§5.4), units, **purchase-unit conversion** (bag/sack/crate = N base units, §6.3), **shelf-life alert age (days)** per item, **Deactivate Item** (never delete; keeps historical references — old transactions still show the item) |
 | Business | Business Name, Currency (₹ default), Default Unit (kg), default shelf-life policy |
-| App | Appearance/Theme, Expense category editor, **single reason editor** — one editable set shared by payment **deductions** (§7.5.3), inventory **waste/loss marks** (§8.6) and **rejection reasons** (§6.6), default Overdue Alert Days, **backup reminder interval** (default 7 days) |
+| App | Appearance/Theme, Expense category editor, **single reason editor** — one editable set shared by payment **deductions** (§7.5.3), inventory **waste/loss marks** (§8.6) and **rejection reasons** (§6.6), **default Overdue Alert Days (default 7 — the global fallback that pre-fills the Add-Tender field, §7.2)**, **alert thresholds — Long-Pending Dues aging (default 30 days), Tender Ending Soon N days (default 7), Seller Payable alert N days (default 3)**, **backup reminder interval** (default 7 days) |
 | Data | **Backup** (with confirmation → complete feedback; **version-tagged** files: schema version + timestamp), **Restore** (validates version before confirming — destructive warning), **Export Data** (CSV/JSON), **Import Data** (validation + confirm), **Delete All Data** (double confirmation, warns of permanent loss) |
 | About | App info, version, About |
 
@@ -802,7 +812,7 @@ Keep settings light:
 
 # 14. NOTIFICATIONS & ATTENTION CENTER
 
-Shown on Home (badged) and optionally local notifications:
+**Attention Center** — a **full-screen list** of every alert below (§17 Notifications row), opened by tapping the Attention badge on Home. In v1 alerts are **in-app only** (no OS notifications); OS-local notifications are deferred post-v1 (§21):
 
 | Alert | Trigger |
 |-------|---------|
@@ -812,10 +822,10 @@ Shown on Home (badged) and optionally local notifications:
 | Inventory Attention | Damaged stock / items awaiting decision |
 | **Old Stock Alert** | Inventory lot age exceeds the item's shelf-life alert age (per item, §8.1) |
 | **Payment Due Alert** | Tender period ended + institution's Overdue Alert Days passed with unpaid billing (§7.5.6) |
-| **Long-Pending Dues** | Receivables aging beyond the contractor-set threshold (§7.5.6) |
+| **Long-Pending Dues** | Receivables aging beyond the contractor-set threshold (default 30 days — Settings → App, §13) (§7.5.6) |
 | **Backup Due** | No backup performed in N days (default 7, configurable — §13) |
-| **Tender Ending Soon** | Configurable N days (default 7) before a tender's End Date: "Tender 'X' ends 31 Oct — bill the period" (§7.2, §7.5.2) |
-| **Seller Payable Due** | An on-credit purchase's due date is approaching or passed while unsettled (§9.1) |
+| **Tender Ending Soon** | N days (default 7 — Settings → App, §13) before a tender's End Date: "Tender 'X' ends 31 Oct — bill the period" (§7.2, §7.5.2) |
+| **Seller Payable Due** | An on-credit purchase's due date is approaching or passed while unsettled (alert lead default 3 days — Settings → App, §13) (§9.1) |
 | Price Updated | A fixed tender price was changed (informational) |
 | Transaction Completed | Cart confirmed (informational) |
 | Waste/Loss Alert | A waste action was recorded (informational) |
@@ -839,7 +849,7 @@ All alert text is in plain English (§5.4).
 | Quantity with too many decimals | "Up to 2 decimal places allowed." |
 | Confirm with unallocated remainder / no rates / unresolved rejections | Warning list on Review with paths to fix |
 | Multiple active tenders, target unknown | "Choose the tender for this supply." (tender picker, §7.2) |
-| Deduction + received exceed pending dues | "Deductions plus received cannot exceed the pending amount." (§7.5.3) |
+| Deduction + received exceed pending dues | "Deductions plus received cannot exceed the pending amount." — unless the contractor passes the **overpayment intent step** ("Record it" → excess becomes credit balance, §7.5.3) (§7.5.3) |
 | Editing a transaction whose bill was already shared | "A shared bill exists — amounts have changed. Regenerate and re-share the updated version." (§7.5.5) |
 | Downward revision after collections exist | "₹15,000 is already collected against this bill — revised total is ₹13,000. ₹2,000 becomes credit balance." (§7.5.3) |
 
@@ -853,7 +863,7 @@ All alert text is in plain English (§5.4).
 | Duplicate item in cart | Prompt: edit existing line or add a separate purchase line. Multiple lines allowed; cart shows combined qty + weighted-average rate; allocations draw from the combined pool. |
 | Purchase rate ₹0 | Allowed (e.g., free stock) but shown as ₹0 — flagged for review on the Review screen. |
 | Same item, multiple lots in inventory | Kept as separate lots per original rate; the app picks/asks which lot to consume; each lot keeps its cost and history. |
-| Cart across days | Cart date = day started. Opening the app with an unconfirmed old cart → prompt: "Continue yesterday's cart?" or "Start fresh" (old cart must be confirmed or explicitly discarded first). |
+| Cart across days | Cart date = day started. Opening the app with an unconfirmed old cart → prompt: "Continue yesterday's cart?" or "Start fresh" (old cart must be confirmed or explicitly **discarded** first — the Discard-cart confirmation, §17 modal list). |
 | Offline | Fully functional offline (local-first); sync/backup optional and non-blocking. |
 | Loss day (revenue < cost) | Displayed as red Loss (−₹X) everywhere consistently; margin shown as negative %. |
 | Revenue = 0 but costs exist | Margin blank; Loss shown. |
@@ -1051,7 +1061,7 @@ All three render as compact badge-rows in History (Sale/Waste/Settlement), ancho
 | | Item Detail (Quantity Entry) | Qty (purchase-unit toggle) · rate with last-rate prefill · optional purchase source · **quality/grade note (§6.3)** · **paid now / on-credit flag (§9.1)** · auto purchase cost · keypad |
 | | Inventory Availability Check | 0 · some · choice sheet inventory/new/both |
 | | Add to Cart | Success toast · duplicate-item prompt (edit/separate) · error state |
-| | Add/Edit Custom Item | Image mgmt, unit selection, deactivate confirmation, deactivated list, item history |
+| | Add/Edit Custom Item | Image mgmt (bundled seed set or camera/gallery, §5.3), unit selection, deactivate confirmation, deactivated list, item history |
 | Cart | **Cart** | Empty · Active · Cart item detail · Edit qty · Edit rate · Remove confirmation · Investment summary · validation/error state · Continue to Allocate · **Correction Mode never here — Cart tab = today's cart only (§2.8)** |
 | Institutions | Institution List / Profile | Empty · search · add · edit · **tenders (add/edit multiple — own price lists, periods, optional demanded quantities, §7.2)** · deactivation (confirmed; confirmation names open tenders/dues; history preserved; Receivables & Contract P&L stay intact and collectable, §7.4) |
 | | Fixed Tender Prices | List · add · edit · delete confirmation · price history · missing-price sheet |
@@ -1079,7 +1089,7 @@ All three render as compact badge-rows in History (Sale/Waste/Settlement), ancho
 | Settings | Settings Dashboard | Institutions · Item management (incl. purchase units, shelf-life ages) · Business (name/currency/units) · Expense categories · Overdue Alert Days · backup reminder interval · Appearance · About |
 | Data Mgmt | Backup / Restore / Export / Import | Confirmations, destructive warnings, progress, completion feedback, Delete All Data (double confirm) |
 | Notifications | Attention Center | All alerts from §14 |
-| Modals / Sheets | Selectors & Confirmations | Institution · Item · Unit · Expense category · Inventory action · Loss reason · Rejection reason · **Select tender** · **Record payment (received + deductions)** · **Settle seller payment** · **Add post-lock adjustment** · Edit qty · Edit rate · Add expense · Remove item · Mark waste · Inventory usage · Inventory sale · Cart completion · Data restore · Data deletion |
+| Modals / Sheets | Selectors & Confirmations | Institution · Item · Unit · Expense category · Inventory action · Loss reason · Rejection reason · **Select tender** · **Record payment (received + deductions)** · **Settle seller payment** · **Add post-lock adjustment** · Edit qty · Edit rate · Add expense · Remove item · Mark waste · Inventory usage · Inventory sale · Cart completion · **Discard cart** · Data restore · Data deletion |
 | Global States | Applied to every screen | Loading · Skeleton · Empty · Error · Offline · Success · Validation error · Toast/Snackbar · Bottom sheet · Modal · Full-screen error recovery |
 
 ---
@@ -1115,7 +1125,8 @@ For every major action, design and connect the relevant:
 - [ ] **Multiple tenders per institution** supported (picker, per-tender price lists and dues periods) (§7.2).
 - [ ] FEFO oldest-lot consumption default; backup reminder alert (§8.4, §13–14).
 - [ ] **Correction Mode is a separate cart type** that can coexist with the daily cart (§2.8); blended delivered-cost allocation for mixed-source items (§2.2 formula 4).
-- [ ] Pending figure always **split: Accrued vs Billed pending**; revisions re-map payments FIFO; excess collections become **credit balances** auto-applied next bill (§7.5.3, §7.5.6).
+- [ ] Pending figure always **split: Accrued vs Billed pending**; revisions re-map payments FIFO; excess collections become **credit balances** auto-applied next bill — recorded only through the **explicit overpayment intent step** ("Record it", §7.5.3, §15.1); thresholds live in **Settings → App** with defaults Long-Pending 30 / Tender-Ending 7 / Seller-Payable 3 days (§7.5.3, §7.5.6, §13, §14).
+- [ ] **Attention Center is a full-screen list** behind the Home badge; alerts are **in-app only in v1** (OS notifications deferred per §21 rule 4); **Discard-cart confirmation** exists as a §17 modal (§14, §15.2, §17).
 - [ ] Non-cart money events (sale/waste/adjustment/settlement) are date-anchored **Other Day Entries** in History with correct daily/monthly P&L aggregation (§10.1, §16.9).
 - [ ] **Payables**: purchase payment flag (paid/credit + seller + due date), seller dues aging, settlements move cash only — never P&L (§9.1, §16.9).
 - [ ] Cart-open **inventory reservations** deduct from availability and release on discard/revision; lots deplete only at Confirm (§8.4).
@@ -1178,4 +1189,5 @@ Standing rules for all future phases (binding, though not v1-scoped):
 1. **Advisory only — AI never writes to the books.** Every suggested buy/price/decision enters through the exact same manual screens and confirmation flows of §1–§20; no autonomous purchase, rate, or allocation.
 2. **Privacy-first and single-user (§1.4)** — all computation on the contractor's own device/export; no institution data is ever shared with third parties.
 3. **The ledger stays the source of truth (§2.11)** — analysis may only consume it, never mutate it; labels stay human-confirmable.
+4. **Also post-v1:** OS-level local notifications (permission prompt + scheduling for the §14 alerts) — v1 keeps alerts in-app only (§14).
 4. **Profit-maximization framing (§1.1)** — every phase is judged by one question: *"did this make the contractor more money or fewer losses?"*
